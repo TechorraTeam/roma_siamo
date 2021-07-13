@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "999517151150",
+    "firebase_url": "https://roma-siamo-noi-default-rtdb.firebaseio.com",
+    "project_id": "roma-siamo-noi",
+    "storage_bucket": "roma-siamo-noi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999517151150:android:5a7ace50bc35ac436ef23f",
+        "android_client_info": {
+          "package_name": "com.roma.siamo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999517151150-r26mh0a9b59h34vk4du29rvpbj4mdoum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWMn4-vosmzmTOb7Ktgha2m2uNtArAHnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999517151150-r26mh0a9b59h34vk4du29rvpbj4mdoum.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "999517151150-v2k2o9qh1h99n2a2ne4ct9s0ftvd2hbk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.roma.siamo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
