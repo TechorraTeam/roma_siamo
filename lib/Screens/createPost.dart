@@ -50,7 +50,7 @@ class _SearchState extends State<CreatePost> {
         Placemark place = p.first;
 
         setState(() {
-          _currentAddress = "${place.subLocality}, ${place.subAdministrativeArea}, ${place.country}";
+          _currentAddress = "${place.name}, ${place.locality}";
           //"${place.name}, ${place.locality},${place.administrativeArea},${place.country}";
           locationController.text = _currentAddress.toString();
           print(_currentAddress);
@@ -202,7 +202,7 @@ class _SearchState extends State<CreatePost> {
 
       final dir = await getTemporaryDirectory();
       final targetPath = dir.absolute.path +
-          "/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg";
+          "/${Timestamp.now().microsecondsSinceEpoch.toString()}.jpg";
 
       await FlutterImageCompress.compressAndGetFile(
         widget.image.absolute.path,
@@ -215,7 +215,7 @@ class _SearchState extends State<CreatePost> {
         TaskSnapshot storageTaskSnapshot = await task;
 
         storageTaskSnapshot.ref.getDownloadURL().then((downloadUrl) {
-          var time = DateTime.now().millisecondsSinceEpoch.toString();
+          var time = Timestamp.now().microsecondsSinceEpoch.toString();
 
           FirebaseFirestore.instance.collection("post").doc(time).set({
             'idFrom': globalID,
@@ -225,6 +225,9 @@ class _SearchState extends State<CreatePost> {
             'content': downloadUrl,
             'caption': descriptionController.text ?? "",
             'location': locationController.text ?? "",
+            'latitude': currentLocation.latitude,
+            'longitude': currentLocation.longitude,
+            'geoPoint': GeoPoint(currentLocation.latitude, currentLocation.longitude),
             'likes': [],
             'comments': [],
             'videoUrl': '',

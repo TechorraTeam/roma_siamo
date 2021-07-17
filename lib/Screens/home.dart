@@ -260,9 +260,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               backgroundColor: appColorWhite,
               elevation: 0,
               title: Text(
-                "Snapta",
+                "Roma Siamo Voi",
                 style: GoogleFonts.pacifico(
-                    fontSize: 25,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: appColorBlack),
               ),

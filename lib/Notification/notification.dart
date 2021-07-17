@@ -5,9 +5,7 @@ import 'dart:convert';
 
 import 'package:pressfame_new/constant/global.dart';
 
-String serverKey =
-    "AAAAupZgIbg:APA91bELaqXMVzLrzQRjU1NTQRbZlI6iqqQ76U2DaqNO6izr2Q3Ej-OBTo1Z31sH3Je1BXeSHV3s2a46KJoKRyE0hAqjUFO4Bt7VIlCrNuFeUBs3e3Elp_vrLOPZOLBAKaFh5vuWLiNi";
-
+String serverKey = "AAAA6LfdX64:APA91bGqet2wIVyUpb6rpGOyW2MCr1NfeJQuaWwZ8ZHyMXMPsWPwIZEpQyryvVyxlmVk-uNaq_-PJ4M8Eb_m8hg0ZygJ68LqoNXV3BDL-PX_CrjM7ubR4ZBbmIpb-oQ1HU1K3M_tZjYW";
 setNotificationData(
     String peerId, String type, String message, String redirectId) {
   var time = DateTime.now().millisecondsSinceEpoch.toString();

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:pressfame_new/Screens/splashscreen.dart';
 import 'package:pressfame_new/constant/Constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +23,7 @@ Future main() async {
   SharedPreferences.getInstance().then(
     (prefs) async {
       runApp(
-        MaterialApp(
+        GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: "Snapta",
           theme: new ThemeData(

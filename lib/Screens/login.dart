@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -15,6 +16,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:pressfame_new/share_preference/preferencesKey.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'forgotpass.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:http/http.dart' as http;
+
 
 class Login extends StatefulWidget {
   @override
@@ -82,7 +86,7 @@ class _LoginState extends State<Login> {
                                             const EdgeInsets.only(top: 100),
                                         child: Center(
                                             child: Text(
-                                          "Snapta",
+                                          "Roma Siamo Voi",
                                           style: GoogleFonts.pacifico(
                                               fontSize: 35,
                                               fontWeight: FontWeight.bold),
@@ -117,6 +121,7 @@ class _LoginState extends State<Login> {
                                       ),
                                       //numberButton(),
                                       googleButton(),
+                                      facebookButton(),
                                     ],
                                   ),
                                   isLoading == true
@@ -297,7 +302,7 @@ class _LoginState extends State<Login> {
 
   Widget googleButton() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 30),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: Container(
           width: SizeConfig.blockSizeHorizontal * 70,
           margin: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
@@ -315,6 +320,35 @@ class _LoginState extends State<Login> {
                     padding: EdgeInsets.only(left: 10.0, right: 10.0),
                     child: new Text(
                       "Sign in with Google",
+                      style: TextStyle(
+                          color: fontColorBlue, fontWeight: FontWeight.bold),
+                    )),
+              ],
+            ),
+          )),
+    );
+  }
+
+  Widget facebookButton() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: Container(
+          width: SizeConfig.blockSizeHorizontal * 70,
+          margin: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
+          child: InkWell(
+            onTap: () {
+              loginWithFacebook();
+            },
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Image.asset('assets/images/facebook.png',
+                    height: SizeConfig.blockSizeVertical * 4),
+                new Container(
+                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: new Text(
+                      "Sign in with Facebook",
                       style: TextStyle(
                           color: fontColorBlue, fontWeight: FontWeight.bold),
                     )),
@@ -403,6 +437,47 @@ class _LoginState extends State<Login> {
         });
       });
     });
+  }
+
+  //Facebook Login
+  loginWithFacebook () async {
+    FacebookLogin facebookLogin = FacebookLogin();
+    try{
+      setState(() {
+        emailNode.unfocus();
+        passwordNode.unfocus();
+      });
+      FacebookLoginResult facebookLoginResult = await facebookLogin.logIn(['email', 'public_profile']);
+      print(facebookLoginResult.errorMessage);
+      switch (facebookLoginResult.status) {
+
+        case FacebookLoginStatus.loggedIn:
+          final token = facebookLoginResult.accessToken.token;
+          await http.get(Uri.parse('https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=${token}'));
+          UserCredential userCredential = await _auth.signInWithCredential(FacebookAuthProvider.credential(facebookLoginResult.accessToken.token));
+          final user = userCredential.user;
+          if (user.uid != null) {
+            checkUserExists(user.uid, user.email, user.displayName, user.photoURL);
+          }
+          break;
+
+        case FacebookLoginStatus.cancelledByUser:
+          return null;
+          break;
+
+        case FacebookLoginStatus.error:
+          return null;
+          break;
+
+        default:
+          return null;
+          break;
+      }
+    }catch(e){
+      print(e);
+      toast("Error", 'Failed to sign in with Facebook: $e', context);
+    }
+
   }
 
   Future<void> _signInWithGoogle() async {

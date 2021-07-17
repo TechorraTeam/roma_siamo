@@ -61,7 +61,8 @@ dependencies:
   image_picker: ^0.8.0+3
   another_flushbar: ^1.10.20
   csc_picker: ^0.2.5
-  get:
+  flutter_facebook_login: ^3.0.0
+  get: ^4.1.4
   
 
 dev_dependencies:

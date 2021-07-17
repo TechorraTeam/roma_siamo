@@ -58,37 +58,13 @@ void dispose() {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Container(
-      color: Colors.white,
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(50.0),
-            child: Center(
-              child: Container(
-                height: SizeConfig.safeBlockVertical * 20,
-                width: SizeConfig.screenWidth,
-                // height: 130,
-                // width: 130,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/splash.png'),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: Container(
-          //     height: 100,
-          //     width: 100,
-          //     child: Image.asset(
-          //       'assets/images/Layer2.png',
-          //     ),
-          //   ),
-          // ),
-        ],
+      height: SizeConfig.screenHeight,
+      width: SizeConfig.screenWidth,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/splash.png'),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
