@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pressfame_new/Screens/tabbar.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class SharePostScrren extends StatefulWidget {
@@ -41,7 +42,7 @@ class _PersonalInfoState extends State<SharePostScrren> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Text(
-            "Send Post",
+            "send_post".tr,
             style: TextStyle(
                 fontSize: 20,
                 color: appColorBlack,
@@ -65,7 +66,7 @@ class _PersonalInfoState extends State<SharePostScrren> {
                 }
               },
               icon: Text(
-                "Send",
+                "send".tr,
                 style: TextStyle(
                     color: appColorBlack,
                     fontSize: 14,
@@ -106,7 +107,7 @@ class _PersonalInfoState extends State<SharePostScrren> {
                     color: Colors.grey[500],
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
-                hintText: "Search",
+                hintText: "search".tr,
                 fillColor: appColorGrey,
                 prefixIcon: Padding(
                     padding: const EdgeInsets.all(10),

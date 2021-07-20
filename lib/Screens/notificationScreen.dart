@@ -7,6 +7,7 @@ import 'package:pressfame_new/Screens/publicProfile.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:timeago/timeago.dart';
+import 'package:get/get.dart';
 
 class NotificationScreen extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _Discover4State extends State<NotificationScreen> {
             backgroundColor: appColorWhite,
             elevation: 0,
             title: Text(
-              "Activity",
+              "activity".tr,
               style: TextStyle(
                 fontSize: 20,
                 color: appColorBlack,
@@ -74,7 +75,7 @@ class _Discover4State extends State<NotificationScreen> {
                               )
                             : Center(
                                 child: Text(
-                                    "Currently you don't have any notifications"),
+                                    "currently_no_notifications".tr),
                               ),
                       );
                     }

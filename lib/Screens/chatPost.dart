@@ -6,6 +6,7 @@ import 'package:pressfame_new/Screens/viewPublicPost.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
 
+
 // ignore: must_be_immutable
 class ChatPost extends StatefulWidget {
   String id;

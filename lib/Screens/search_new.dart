@@ -9,6 +9,7 @@ import 'package:pressfame_new/Screens/viewPublicPost.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
 class SerchFeed extends StatefulWidget {
   @override
@@ -107,7 +108,7 @@ class _ProfileState extends State<SerchFeed>
                         });
                       },
                       icon: Text(
-                        "Cancel",
+                        "cancel".tr,
                         maxLines: 1,
                         style: TextStyle(
                             color: appColorBlack,
@@ -150,8 +151,8 @@ class _ProfileState extends State<SerchFeed>
                       unselectedLabelColor: Colors.grey,
                       indicatorColor: appColorBlack,
                       tabs: [
-                        Tab(icon: Text("Tags")),
-                        Tab(icon: Text("Accounts")),
+                        Tab(icon: Text("tags".tr)),
+                        Tab(icon: Text("accounts".tr)),
                       ],
                     ),
                   ),
@@ -241,7 +242,7 @@ class _ProfileState extends State<SerchFeed>
                     filled: true,
                     hintStyle:
                         new TextStyle(color: Colors.grey[600], fontSize: 14),
-                    hintText: "Search",
+                    hintText: "search".tr,
                     contentPadding: EdgeInsets.only(top: 10.0),
                     fillColor: Colors.grey[200],
                     prefixIcon: Icon(

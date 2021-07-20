@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 var userList = [];
 String globalID = '';
@@ -238,7 +239,7 @@ Widget _buildAlertContainer(
           height: 45,
           // ignore: deprecated_member_use
           child: OutlineButton(
-            child: Text("OK"),
+            child: Text("ok".tr),
             borderSide: BorderSide(color: Colors.black),
             onPressed: () {
               Navigator.pop(context);
@@ -287,7 +288,7 @@ actionAlertBox(
         title: title,
         content: content,
         // ignore: deprecated_member_use
-        actions: <Widget>[FlatButton(child: Text('OK'), onPressed: onPressed)],
+        actions: <Widget>[FlatButton(child: Text('ok'.tr), onPressed: onPressed)],
       );
     },
   );
@@ -380,7 +381,7 @@ void errorDialog(BuildContext context, String message) {
               child: RaisedButton(
                 color: Colors.red,
                 child: Text(
-                  "OK",
+                  "ok".tr,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -458,7 +459,7 @@ class Dialogs {
                           height: 10,
                         ),
                         Text(
-                          "Please Wait....",
+                          "please_wait".tr,
                           style: TextStyle(color: Colors.blueAccent),
                         )
                       ]),
@@ -582,7 +583,7 @@ simpleAlertBox({BuildContext context, Widget title, Widget content}) {
         actions: <Widget>[
           // ignore: deprecated_member_use
           FlatButton(
-            child: Text('OK'),
+            child: Text('ok'.tr),
             onPressed: () {
               Navigator.pop(context);
             },

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pressfame_new/Screens/viewPublicPost.dart';
 import 'package:pressfame_new/constant/global.dart';
+import 'package:get/get.dart';
 
 class SavedPost extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class _PersonalInfoState extends State<SavedPost> {
           backgroundColor: appColorWhite,
           elevation: 2,
           title: Text(
-            "Saved",
+            "saved".tr,
             style: TextStyle(
                 fontSize: 20,
                 color: appColorBlack,

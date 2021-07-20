@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'chat.dart';
 import 'color_utils.dart';
+import 'package:get/get.dart';
+
 
 class ChatList extends StatefulWidget {
   @override
@@ -27,7 +29,7 @@ class _ChatListState extends State<ChatList> {
         backgroundColor: appColorWhite,
         elevation: 1,
         title: Text(
-          "Messenger",
+          "messenger".tr,
           style: TextStyle(
               fontSize: 20, color: appColorBlack, fontWeight: FontWeight.bold),
         ),
@@ -85,7 +87,7 @@ class _ChatListState extends State<ChatList> {
                     },
                   )
                 : Center(
-                    child: Text("Currently you don't have any messages"),
+                    child: Text("currently_no_messages".tr),
                   ),
           );
         }
@@ -360,7 +362,7 @@ class _ChatListState extends State<ChatList> {
       color: Colors.red,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       child: Text(
-        "Message",
+        "message".tr,
         style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white),
       ),
       onPressed: () {},

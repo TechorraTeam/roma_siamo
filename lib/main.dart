@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pressfame_new/Screens/splashscreen.dart';
 import 'package:pressfame_new/constant/Constant.dart';
+import 'package:pressfame_new/constant/translations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
 
@@ -25,7 +26,11 @@ Future main() async {
       runApp(
         GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: "Snapta",
+          translations: Messages(), // your translations
+          //locale: Locale('it', 'IT'),
+          locale: Get.deviceLocale, // translations will be displayed in that locale
+          fallbackLocale: Locale('en', 'US'),
+          title: "Roma Siamo Voi",
           theme: new ThemeData(
               accentColor: Colors.black,
               primaryColor: Colors.black,

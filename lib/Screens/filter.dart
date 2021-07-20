@@ -6,7 +6,7 @@ import 'package:photofilters/photofilters.dart';
 import 'package:image/image.dart' as imageLib;
 import 'package:pressfame_new/Screens/createPost.dart';
 import 'package:pressfame_new/constant/global.dart';
-
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class FilterScreen extends StatefulWidget {
@@ -39,7 +39,7 @@ class _MyAppState extends State<FilterScreen> {
         builder: (context) => Container(
           child: new PhotoFilterSelector(
             title: Text(
-              "Photo Customization",
+              "photo_customisation".tr,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.white,
@@ -76,7 +76,7 @@ class _MyAppState extends State<FilterScreen> {
         backgroundColor: appColorWhite,
         elevation: 0,
         title: Text(
-          "Photo Customization",
+          "photo_customisation".tr,
           style: TextStyle(
               fontSize: 18, color: appColorBlack, fontWeight: FontWeight.bold),
         ),
@@ -101,7 +101,7 @@ class _MyAppState extends State<FilterScreen> {
             child: Padding(
               padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
               child: Text(
-                'Done',
+                'done'.tr,
                 style: TextStyle(
                     color: appColorBlack,
                     fontSize: 15,
@@ -115,7 +115,7 @@ class _MyAppState extends State<FilterScreen> {
         child: new Container(
           child: widget.image == null
               ? Center(
-                  child: new Text('No image selected.'),
+                  child: new Text('no_image_selected'.tr),
                 )
               : Image.file(widget.image),
         ),
@@ -123,7 +123,7 @@ class _MyAppState extends State<FilterScreen> {
       floatingActionButton: new FloatingActionButton(
         backgroundColor: appColorBlack,
         onPressed: () => getImage(context),
-        tooltip: 'Pick Image',
+        tooltip: 'pick_image'.tr,
         child: new Icon(
           Icons.center_focus_strong,
         ),

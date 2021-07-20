@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'forgotpass.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
 
 class Login extends StatefulWidget {
@@ -108,7 +109,7 @@ class _LoginState extends State<Login> {
                                               MainAxisAlignment.center,
                                           children: <Widget>[
                                             horizontalLine(),
-                                            Text("OR",
+                                            Text("or".tr,
                                                 style: TextStyle(
                                                     fontSize: 14.0,
                                                     fontFamily:
@@ -152,7 +153,7 @@ class _LoginState extends State<Login> {
           focusNode: emailNode,
           textInputAction: TextInputAction.next,
           controller: emailController,
-          hintText: 'Enter Email',
+          hintText: 'enter_email'.tr,
           prefixIcon: Icon(
             Icons.person,
             color: iconColor,
@@ -169,7 +170,7 @@ class _LoginState extends State<Login> {
           maxLines: 1,
           controller: passwordController,
           obscureText: !_obscureText,
-          hintText: 'Enter Password',
+          hintText: 'enter_password'.tr,
           prefixIcon: Icon(
             Icons.lock,
             color: iconColor,
@@ -207,7 +208,7 @@ class _LoginState extends State<Login> {
           },
           child: Text.rich(
             TextSpan(
-              text: 'Forgot Password?',
+              text: 'forgot_your_password'.tr,
               style: TextStyle(
                 fontSize: 14,
                 color: fontColorBlue,
@@ -230,7 +231,7 @@ class _LoginState extends State<Login> {
           height: SizeConfig.blockSizeVertical * 6,
           width: SizeConfig.screenWidth,
           child: CustomButtom(
-            title: 'Log In',
+            title: 'log_in'.tr,
             color: buttonColorBlue,
             onPressed: () {
               if (emailController.text != '' && passwordController.text != '') {
@@ -246,7 +247,7 @@ class _LoginState extends State<Login> {
                   emailNode.unfocus();
                   passwordNode.unfocus();
                 });
-                toast("Error", "Email and password is required", context);
+                toast("error".tr, "email_password_required".tr, context);
               }
             },
           ),
@@ -270,7 +271,7 @@ class _LoginState extends State<Login> {
             const EdgeInsets.only(right: 20, top: 10, left: 20, bottom: 10),
         child: Text.rich(
           TextSpan(
-            text: "Don't have an account? ",
+            text: "dont_have_account".tr,
             style: TextStyle(
               fontSize: 14,
               color: appColorGrey,
@@ -278,7 +279,7 @@ class _LoginState extends State<Login> {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: 'Sign Up',
+                text: 'sign_up'.tr,
                 style: TextStyle(
                   fontSize: 14,
                   // decoration: TextDecoration.underline,
@@ -319,7 +320,7 @@ class _LoginState extends State<Login> {
                 new Container(
                     padding: EdgeInsets.only(left: 10.0, right: 10.0),
                     child: new Text(
-                      "Sign in with Google",
+                      "sign_in_google".tr,
                       style: TextStyle(
                           color: fontColorBlue, fontWeight: FontWeight.bold),
                     )),
@@ -348,7 +349,7 @@ class _LoginState extends State<Login> {
                 new Container(
                     padding: EdgeInsets.only(left: 10.0, right: 10.0),
                     child: new Text(
-                      "Sign in with Facebook",
+                      "sign_in_facebook".tr,
                       style: TextStyle(
                           color: fontColorBlue, fontWeight: FontWeight.bold),
                     )),
@@ -379,7 +380,7 @@ class _LoginState extends State<Login> {
       setState(() {
         isLoading = false;
       });
-      toast("Error", e.toString(), context);
+      toast("error".tr, e.toString(), context);
     }
   }
 
@@ -420,7 +421,7 @@ class _LoginState extends State<Login> {
               setState(() {
                 isLoading = false;
               });
-              toast("Error", 'Failed to sign in with Google:', context);
+              toast("error".tr, 'failed_google'.tr, context);
             }
           });
           //     setState(() {
@@ -475,7 +476,7 @@ class _LoginState extends State<Login> {
       }
     }catch(e){
       print(e);
-      toast("Error", 'Failed to sign in with Facebook: $e', context);
+      toast("error".tr, 'failed_facebook'.tr, context);
     }
 
   }
@@ -512,7 +513,7 @@ class _LoginState extends State<Login> {
         isLoading = false;
       });
       print(e);
-      toast("Error", 'Failed to sign in with Google: $e', context);
+      toast("error".tr, 'failed_google'.tr, context);
     }
   }
 

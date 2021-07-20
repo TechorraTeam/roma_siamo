@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:pressfame_new/Screens/publicProfile.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
+import 'package:get/get.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -69,7 +70,7 @@ class _SearchState extends State<Search> {
             backgroundColor: appColorWhite,
             elevation: 1,
             title: Text(
-              "Accounts",
+              "accounts".tr,
               style: TextStyle(
                   fontSize: 20,
                   color: appColorBlack,
@@ -134,7 +135,7 @@ class _SearchState extends State<Search> {
                         : Padding(
                             padding: const EdgeInsets.only(top: 40),
                             child: Center(
-                              child: Text("No search found"),
+                              child: Text("no_search_found".tr),
                             ),
                           );
               }
@@ -314,7 +315,7 @@ class _SearchState extends State<Search> {
                                     hint: Padding(
                                       padding: const EdgeInsets.only(top: 0),
                                       child: Text(
-                                        'Profession',
+                                        'profession'.tr,
                                         style: TextStyle(
                                             color: Colors.grey[600],
                                             fontSize: 13),
@@ -356,7 +357,7 @@ class _SearchState extends State<Search> {
                 child: Column(
                   children: [
                     Text(
-                      "Age:  ${startAge.round().toString()}-${endAge.round().toString()}",
+                      "age".tr+": ${startAge.round().toString()}-${endAge.round().toString()}",
                       style: TextStyle(fontSize: 12),
                     ),
                     SliderTheme(
@@ -366,8 +367,8 @@ class _SearchState extends State<Search> {
                         values: _age,
                         min: 18,
                         max: 99,
-                        labels: RangeLabels('${_age.start.round()}' + " yrs",
-                            '${_age.end.round()}' + " yrs"),
+                        labels: RangeLabels('${_age.start.round()} ' + "yrs".tr,
+                            '${_age.end.round()} ' + "yrs".tr),
                         inactiveColor: Colors.grey,
                         activeColor: Colors.green,
                         onChanged: (RangeValues values) {
@@ -400,7 +401,7 @@ class _SearchState extends State<Search> {
                       filled: false,
                       hintStyle:
                           new TextStyle(color: appColorGrey, fontSize: 13),
-                      hintText: "Search by Name",
+                      hintText: "search_by_name".tr,
                       fillColor: Colors.grey[300],
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey, width: 1),
@@ -449,7 +450,7 @@ class _SearchState extends State<Search> {
                                     hint: Padding(
                                       padding: const EdgeInsets.only(top: 0),
                                       child: Text(
-                                        'Gender',
+                                        'gender'.tr,
                                         style: TextStyle(
                                             color: Colors.grey[600],
                                             fontSize: 13),
@@ -539,7 +540,7 @@ class _SearchState extends State<Search> {
                 child: SizedBox(
                   height: 43,
                   child: CustomButtom(
-                    title: 'SEARCH',
+                    title: 'search'.tr.toUpperCase(),
                     color: Colors.black45,
                     onPressed: () {
                       setState(() {
@@ -556,7 +557,7 @@ class _SearchState extends State<Search> {
                 child: SizedBox(
                   height: 43,
                   child: CustomButtom(
-                    title: 'CLEAR FILTERS',
+                    title: 'clear_filters'.tr,
                     color: Colors.black45,
                     onPressed: () {
                       setState(() {

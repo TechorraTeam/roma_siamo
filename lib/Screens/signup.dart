@@ -7,6 +7,7 @@ import 'package:pressfame_new/constant/global.dart';
 import 'dart:io';
 import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -47,13 +48,13 @@ class _SignUpState extends State<SignUp> {
         setState(() {
           isLoading = false;
         });
-        toast("Error", "Something went wrong please try again ", context);
+        toast("error".tr, "something_went_wrong".tr, context);
       }
     } catch (e) {
       setState(() {
         isLoading = false;
       });
-      toast("Error", e.toString(), context);
+      toast("error".tr, e.toString(), context);
     }
   }
 
@@ -139,7 +140,7 @@ class _SignUpState extends State<SignUp> {
                                       padding: const EdgeInsets.only(top: 100),
                                       child: Center(
                                           child: Text(
-                                        "Snapta",
+                                        "Roma Siamo Voi",
                                         style: GoogleFonts.pacifico(
                                             fontSize: 35,
                                             fontWeight: FontWeight.bold),
@@ -182,7 +183,7 @@ class _SignUpState extends State<SignUp> {
           maxLines: 1,
           textInputAction: TextInputAction.next,
           controller: nameController,
-          hintText: 'Enter Username',
+          hintText: 'enter_username'.tr,
           prefixIcon: Icon(
             Icons.person,
             color: iconColor,
@@ -198,7 +199,7 @@ class _SignUpState extends State<SignUp> {
           textInputAction: TextInputAction.next,
           controller: passwordController,
            maxLines: 1,
-          hintText: 'Enter Password',
+          hintText: 'enter_password'.tr,
           obscureText: !_obscureText,
           prefixIcon: Icon(
             Icons.lock,
@@ -226,7 +227,7 @@ class _SignUpState extends State<SignUp> {
         maxLines: 1,
         textInputAction: TextInputAction.next,
         controller: emailController,
-        hintText: 'Enter Email',
+        hintText: 'enter_email'.tr,
         prefixIcon: Icon(
           Icons.email,
           color: iconColor,
@@ -245,7 +246,7 @@ class _SignUpState extends State<SignUp> {
           height: SizeConfig.blockSizeVertical * 6,
           width: SizeConfig.screenWidth,
           child: CustomButtom(
-            title: 'Sign Up',
+            title: 'sign_up'.tr,
             color: buttonColorBlue,
             onPressed: () {
               Pattern pattern =
@@ -261,7 +262,7 @@ class _SignUpState extends State<SignUp> {
               } else {
                 simpleAlertBox(
                     content: Text(
-                        "Fields is empty or password length should be between 6-8 characters."),
+                        "password_condition".tr),
                     context: context);
               }
             },
@@ -281,7 +282,7 @@ class _SignUpState extends State<SignUp> {
             const EdgeInsets.only(right: 20, top: 10, left: 20, bottom: 10),
         child: Text.rich(
           TextSpan(
-            text: "Already have an account? ",
+            text: "already_have_account".tr,
             style: TextStyle(
               fontSize: 14,
               color: appColorGrey,
@@ -289,7 +290,7 @@ class _SignUpState extends State<SignUp> {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: 'Sign In',
+                text: 'sign_in'.tr,
                 style: TextStyle(
                   fontSize: 14,
                   // decoration: TextDecoration.underline,

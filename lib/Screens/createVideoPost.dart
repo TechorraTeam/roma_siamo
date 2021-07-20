@@ -10,6 +10,7 @@ import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CreatVideoePost extends StatefulWidget {
@@ -120,7 +121,7 @@ class _SearchState extends State<CreatVideoePost> {
                           Padding(
                             padding: const EdgeInsets.only(right: 0),
                             child: Text(
-                              "New Post",
+                              "new_post".tr,
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
@@ -152,7 +153,7 @@ class _SearchState extends State<CreatVideoePost> {
                           addPost(context);
                         },
                         child: Text(
-                          'Done',
+                          'done'.tr,
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
                       )
@@ -183,7 +184,7 @@ class _SearchState extends State<CreatVideoePost> {
                                       child:
                                           VideoPlayer(_videoPlayerController),
                                     )
-                                  : Container(child: Text("Null"))
+                                  : Container(child: Text("null".tr))
                               : GestureDetector(
                                   onTap: () {
                                     _pickVideo();
@@ -212,7 +213,7 @@ class _SearchState extends State<CreatVideoePost> {
                                 filled: true,
                                 hintStyle: new TextStyle(
                                     color: Colors.white, fontSize: 12),
-                                hintText: "write something about post or add # tags",
+                                hintText: "write_something_add_hashtag".tr,
                                 fillColor: appColorGrey,
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
@@ -243,7 +244,7 @@ class _SearchState extends State<CreatVideoePost> {
                                 filled: true,
                                 hintStyle: new TextStyle(
                                     color: Colors.white, fontSize: 12),
-                                hintText: "Type location where it was taken",
+                                hintText: "type_location_where_taken".tr,
                                 fillColor: appColorGrey,
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
@@ -363,7 +364,7 @@ class _SearchState extends State<CreatVideoePost> {
         isLoading = false;
       });
 
-      toast("Error", "Field is empty or Select Image", context);
+      toast("error".tr, "field_empty_select_image".tr, context);
 
 
     }

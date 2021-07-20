@@ -4,6 +4,7 @@ import 'package:pressfame_new/Screens/tabbar.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:toast/toast.dart';
+import 'package:get/get.dart';
 
 class PersonalInfo extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
           backgroundColor: appColorWhite,
           elevation: 1,
           title: Text(
-            "Personal Information",
+            "personal_info".tr,
             style: TextStyle(
                 fontSize: 16,
                 color: appColorBlack,
@@ -57,7 +58,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   );
                 },
                 child: Text(
-                  'Done',
+                  'done'.tr,
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 14,
@@ -84,7 +85,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
               children: <Widget>[
                 SizedBox(height: 50),
                 Text(
-                  'This information won\'t be display \n in public profile',
+                  'hidden_info'.tr,
                   style: TextStyle(
                       color: appColorBlack,
                       fontSize: 18,
@@ -126,7 +127,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Email",
+                                        "email".tr,
                                         style: TextStyle(
                                             fontFamily: "Poppins-Medium",
                                             color: appColorBlack,
@@ -181,7 +182,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                     controller.text = globalPhone;
                                   });
                                   openBottmSheet(
-                                      "Phone", 'mobile', globalPhone);
+                                      "phone".tr, 'mobile'.tr, globalPhone);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -191,7 +192,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Phone",
+                                        "phone".tr,
                                         style: TextStyle(
                                             fontFamily: "Poppins-Medium",
                                             color: appColorBlack,
@@ -257,7 +258,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                     controller.text = globalGender;
                                   });
                                   openBottmSheet(
-                                      "Gender", 'gender', globalGender);
+                                      "gender".tr, 'gender_'.tr, globalGender);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -267,7 +268,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Gender",
+                                        "gender".tr,
                                         style: TextStyle(
                                             fontFamily: "Poppins-Medium",
                                             color: appColorBlack,
@@ -290,7 +291,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                                         FontWeight.bold),
                                               )
                                             : Text(
-                                                "Male/Female",
+                                                "male_female".tr,
                                                 maxLines: 1,
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
@@ -333,7 +334,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                     controller.text = globalBday;
                                   });
                                   openBottmSheet(
-                                      "Birthday", 'bday', globalBday);
+                                      "birthday".tr, 'bday'.tr, globalBday);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -343,7 +344,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Birthday",
+                                        "birthday".tr,
                                         style: TextStyle(
                                             fontFamily: "Poppins-Medium",
                                             color: appColorBlack,
@@ -413,7 +414,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "privacy",
+                                        "privacy".tr,
                                         style: TextStyle(
                                             fontFamily: "Poppins-Medium",
                                             color: appColorBlack,
@@ -577,7 +578,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                                 },
                                 color: buttonColorBlue,
                                 textColor: Colors.white,
-                                child: Text("Update".toUpperCase(),
+                                child: Text("update".tr.toUpperCase(),
                                     style: TextStyle(fontSize: 14)),
                               ),
                             ),

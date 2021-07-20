@@ -26,6 +26,7 @@ import 'package:pressfame_new/share_preference/preferencesKey.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timeago/timeago.dart';
 import 'package:fancy_drawer/fancy_drawer.dart';
+import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -126,7 +127,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
               Container(width: 10),
               Text(
-                "Home",
+                "home".tr,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
@@ -151,7 +152,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   height: 22, color: appColorBlack),
               Container(width: 10),
               Text(
-                "Account",
+                "account".tr,
                 style: TextStyle(
                   fontSize: 18,
                   color: appColorBlack,
@@ -174,7 +175,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   height: 22, color: appColorBlack),
               Container(width: 10),
               Text(
-                "Saved",
+                "saved".tr,
                 style: TextStyle(
                   fontSize: 18,
                   color: appColorBlack,
@@ -192,7 +193,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   height: 22, color: appColorBlack),
               Container(width: 10),
               Text(
-                "Help",
+                "help".tr,
                 style: TextStyle(
                   fontSize: 18,
                   color: appColorBlack,
@@ -210,7 +211,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   height: 24, color: appColorBlack),
               Container(width: 10),
               Text(
-                "About",
+                "about".tr,
                 style: TextStyle(
                   fontSize: 18,
                   color: appColorBlack,
@@ -241,7 +242,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   height: 22, color: appColorBlack),
               Container(width: 10),
               Text(
-                "Log out",
+                "log_out".tr,
                 style: TextStyle(
                   fontSize: 18,
                   color: appColorBlack,
@@ -556,7 +557,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   color: appColorBlack,
                   size: 25,
                 ),
-                tooltip: 'share',
+                tooltip: 'share'.tr,
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -656,9 +657,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   child: Row(
                     children: <Widget>[
                       Text(
-                        'View All ' +
+                        'view_all'.tr +
                             document["comments"].length.toString() +
-                            ' Comments',
+                            'comments'.tr,
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,

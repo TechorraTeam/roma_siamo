@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'forgetpass2.dart';
+import 'package:get/get.dart';
 
 class ForgetPass extends StatefulWidget {
   @override
@@ -59,7 +60,7 @@ class _ForgetPassState extends State<ForgetPass> {
                                       height: SizeConfig.blockSizeVertical * 5,
                                     ),
                                     Text(
-                                      'Forgot your password?',
+                                      'forgot_your_password'.tr,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'Poppins-Medium',
@@ -71,7 +72,7 @@ class _ForgetPassState extends State<ForgetPass> {
                                       height: SizeConfig.blockSizeVertical * 3,
                                     ),
                                     Text(
-                                      'Enter Your registerd email below to receive \n password reset instruction',
+                                      'enter_registered_email'.tr,
                                       style: TextStyle(
                                         color: appColorGrey,
                                         fontFamily: 'Poppins-Medium',
@@ -128,7 +129,7 @@ class _ForgetPassState extends State<ForgetPass> {
         child: CustomtextField(
           focusNode: emailNode,
           controller: emailController,
-          hintText: 'Enter Your Email',
+          hintText: 'enter_email'.tr,
           prefixIcon: Icon(
             Icons.email,
             color: iconColor,
@@ -146,15 +147,15 @@ class _ForgetPassState extends State<ForgetPass> {
           height: SizeConfig.blockSizeVertical * 6,
           width: SizeConfig.screenWidth,
           child: CustomButtom(
-            title: 'Next',
+            title: 'next'.tr,
             color: buttonColorBlue,
             onPressed: () {
               if (emailController.text.trim() != "") {
                 _signInWithEmailAndPassword();
               } else {
                 toast(
-                    "Error",
-                    "Please, Enter your Email Address for reset your password",
+                    "error".tr,
+                    "enter_email_reset_password".tr,
                     context);
               }
             },
@@ -174,7 +175,7 @@ class _ForgetPassState extends State<ForgetPass> {
             const EdgeInsets.only(right: 20, top: 10, left: 20, bottom: 10),
         child: Text.rich(
           TextSpan(
-            text: "Back to Login",
+            text: "back_to_login".tr,
             style: TextStyle(
               fontSize: 14,
               color: appColorGrey,

@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pressfame_new/Screens/personalinfo.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
+import 'package:get/get.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -49,7 +50,7 @@ class _EditProfileState extends State<EditProfile> {
           backgroundColor: appColorWhite,
           elevation: 1,
           title: Text(
-            "Edit Profile",
+            "edit_profile".tr,
             style: TextStyle(
                 fontSize: 16,
                 color: appColorBlack,
@@ -109,7 +110,7 @@ class _EditProfileState extends State<EditProfile> {
                             globalImage = downloadUrl;
                             isLoading = false;
                           });
-                          toast("Success", "Profile Updated Sucesssfully",
+                          toast("success".tr, "profile_updated_successfully".tr,
                               context);
                         });
                       }, onError: (err) {
@@ -134,14 +135,14 @@ class _EditProfileState extends State<EditProfile> {
                         globalWeb = webController.text;
                         globalBio = bioController.text;
                       });
-                      toast("Success", "Profile Updated Sucesssfully", context);
+                      toast("success".tr, "profile_updated_successfully".tr, context);
                     });
                   } else {
-                    toast("Error", "Missing Fields", context);
+                    toast("error".tr, "missing_fields".tr, context);
                   }
                 },
                 child: Text(
-                  'Done',
+                  'done'.tr,
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 14,
@@ -211,7 +212,7 @@ class _EditProfileState extends State<EditProfile> {
                         getImage();
                       },
                       child: Text(
-                        "Change profile photo",
+                        "change_profile_photo".tr,
                         style: TextStyle(color: Colors.blue),
                       ),
                     ),
@@ -226,7 +227,7 @@ class _EditProfileState extends State<EditProfile> {
                       Container(
                         width: 100,
                         child: Text(
-                          "Name",
+                          "name".tr,
                           style: TextStyle(
                               fontFamily: "Poppins-Medium",
                               color: appColorBlack,
@@ -240,7 +241,7 @@ class _EditProfileState extends State<EditProfile> {
                           child: TextField(
                             controller: nameController,
                             decoration: InputDecoration(
-                              hintText: "Enter Name",
+                              hintText: "enter_name".tr,
                               hintStyle: TextStyle(
                                   color: Colors.grey[500], fontSize: 14),
                               alignLabelWithHint: true,
@@ -273,7 +274,7 @@ class _EditProfileState extends State<EditProfile> {
                       Container(
                         width: 100,
                         child: Text(
-                          "Website",
+                          "website".tr,
                           style: TextStyle(
                               fontFamily: "Poppins-Medium",
                               color: appColorBlack,
@@ -287,7 +288,7 @@ class _EditProfileState extends State<EditProfile> {
                           child: TextField(
                             controller: webController,
                             decoration: InputDecoration(
-                              hintText: "Enter Website",
+                              hintText: "enter_website",
                               hintStyle: TextStyle(
                                   color: Colors.grey[500], fontSize: 14),
                               alignLabelWithHint: true,
@@ -337,7 +338,7 @@ class _EditProfileState extends State<EditProfile> {
                           child: TextField(
                             controller: bioController,
                             decoration: InputDecoration(
-                              hintText: "Enter Bio",
+                              hintText: "enter_bio".tr,
                               hintStyle: TextStyle(
                                   color: Colors.grey[500], fontSize: 14),
                               alignLabelWithHint: true,
@@ -375,7 +376,7 @@ class _EditProfileState extends State<EditProfile> {
                     child: Row(
                       children: [
                         Text(
-                          'Personal information Settings',
+                          'personal_information_settings'.tr,
                           style: TextStyle(color: Colors.blue),
                           textAlign: TextAlign.center,
                         ),

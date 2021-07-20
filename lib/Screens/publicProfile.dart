@@ -8,6 +8,7 @@ import 'package:pressfame_new/Screens/chat.dart';
 import 'package:pressfame_new/Screens/viewPublicPost.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class PublicProfile extends StatefulWidget {
@@ -115,12 +116,12 @@ class _ProfileState extends State<PublicProfile> {
                                   ),
                                 ),
                               ),
-                              _buildCategory("Posts", totalPost),
+                              _buildCategory("posts".tr, totalPost),
                               InkWell(
-                                  child: _buildCategory("Following",
+                                  child: _buildCategory("following".tr,
                                       document['following'].length.toString())),
                               InkWell(
-                                child: _buildCategory("Followers",
+                                child: _buildCategory("followers".tr,
                                     document['followers'].length.toString()),
                               ),
                             ],
@@ -184,7 +185,7 @@ class _ProfileState extends State<PublicProfile> {
                                               BorderRadius.circular(5.0),
                                         ),
                                         child: Text(
-                                          'Requested',
+                                          'requested'.tr,
                                           style: TextStyle(
                                               color: appColorBlack,
                                               fontSize: 12),
@@ -206,7 +207,7 @@ class _ProfileState extends State<PublicProfile> {
                                                   BorderRadius.circular(5.0),
                                             ),
                                             child: Text(
-                                              'Following',
+                                              'following'.tr,
                                               style: TextStyle(
                                                   color: appColorBlack,
                                                   fontSize: 12),
@@ -224,7 +225,7 @@ class _ProfileState extends State<PublicProfile> {
                                                   BorderRadius.circular(5.0),
                                             ),
                                             child: Text(
-                                              'Follow',
+                                              'follow'.tr,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 12),
@@ -251,7 +252,7 @@ class _ProfileState extends State<PublicProfile> {
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   child: Text(
-                                    'Message',
+                                    'message'.tr,
                                     style: TextStyle(
                                         color: appColorBlack, fontSize: 12),
                                   ),

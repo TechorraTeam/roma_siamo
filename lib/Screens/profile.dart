@@ -9,6 +9,7 @@ import 'package:pressfame_new/Screens/followingScreen.dart';
 import 'package:pressfame_new/Screens/viewPublicPost.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class Profile extends StatefulWidget {
@@ -28,8 +29,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   void initState() {
     getTotalPost();
     myTabs = [
-      Tab(text: 'Posts'),
-      Tab(text: 'Projects'),
+      Tab(text: 'posts'.tr),
+      Tab(text: 'projects'.tr),
     ];
 
     super.initState();
@@ -104,7 +105,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      _buildCategory("Posts", totalPost),
+                      _buildCategory("posts".tr, totalPost),
                       InkWell(
                           onTap: () {
                             Navigator.push(
@@ -114,7 +115,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             );
                           },
                           child: _buildCategory(
-                              "Following", globalrFollowing.length.toString())),
+                              "following".tr, globalrFollowing.length.toString())),
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -124,7 +125,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           );
                         },
                         child: _buildCategory(
-                            "Followers", globalrFollowers.length.toString()),
+                            "Followers".tr, globalrFollowers.length.toString()),
                       ),
                     ],
                   ),
@@ -186,7 +187,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                     BorderRadius.all(Radius.circular(5))),
                             child: Center(
                               child: Text(
-                                "Edit Profile",
+                                "edit_profile".tr,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: appColorBlack,

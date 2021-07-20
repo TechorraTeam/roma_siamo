@@ -16,6 +16,7 @@ import 'package:pressfame_new/constant/global.dart';
 import 'dart:math' as math;
 import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:timeago/timeago.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class ViewPublicPost extends StatefulWidget {
@@ -55,7 +56,7 @@ class _HomeState extends State<ViewPublicPost> {
             backgroundColor: appColorWhite,
             elevation: 0,
             title: Text(
-              "Snapta",
+              "Roma Siamo Voi",
               style: GoogleFonts.pacifico(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -335,7 +336,7 @@ class _HomeState extends State<ViewPublicPost> {
                   color: appColorBlack,
                   size: 25,
                 ),
-                tooltip: 'share',
+                tooltip: 'share'.tr,
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -376,7 +377,7 @@ class _HomeState extends State<ViewPublicPost> {
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 20),
               child: Text(
-                document['likes'].length.toString() + " likes",
+                document['likes'].length.toString() + " "+"likes".tr,
                 style: TextStyle(
                     color: appColorBlack,
                     fontWeight: FontWeight.bold,
@@ -435,9 +436,9 @@ class _HomeState extends State<ViewPublicPost> {
                   child: Row(
                     children: <Widget>[
                       Text(
-                        'View All ' +
+                        'view_all'.tr +
                             document["comments"].length.toString() +
-                            ' Comments',
+                            'comments'.tr,
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,

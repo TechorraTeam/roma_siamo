@@ -17,6 +17,8 @@ import 'package:pressfame_new/Screens/chatPost.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'color_utils.dart';
 import 'package:pressfame_new/constant/global.dart';
+import 'package:get/get.dart';
+
 
 class Chat extends StatefulWidget {
   final String peerID;
@@ -439,7 +441,7 @@ class _ChatState extends State<Chat> {
                                   ),
                                 ),
                                 errorWidget: (context, url, error) => Material(
-                                  child: Text("Not Avilable"),
+                                  child: Text("not_available".tr),
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(8.0),
                                   ),
@@ -544,7 +546,7 @@ class _ChatState extends State<Chat> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       Material(
-                                    child: Text("Not Avilable"),
+                                    child: Text("not_available".tr),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8.0),
                                     ),
@@ -738,7 +740,7 @@ class _ChatState extends State<Chat> {
                   controller: textEditingController,
                   focusNode: textFieldFocusNode,
                   decoration: InputDecoration(
-                    hintText: 'Type your message...',
+                    hintText: 'type_your_message'.tr,
                     hintStyle: TextStyle(color: Colors.grey),
                     suffixIcon: GestureDetector(
                       onTap: () async {
@@ -751,7 +753,7 @@ class _ChatState extends State<Chat> {
                           context: context,
                           apiKey:
                               "5O0S0RL6CRLQj3Ch8wnTFctv7lswZt0G", //YOUR API KEY HERE
-                          lang: GiphyLanguage.spanish,
+                          lang: GiphyLanguage.english,
                         );
 
                         if (gif != null) {

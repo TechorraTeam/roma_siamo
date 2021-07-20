@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pressfame_new/Screens/tabbar.dart';
 import 'package:pressfame_new/constant/global.dart';
+import 'package:get/get.dart';
 
 
 // ignore: must_be_immutable
@@ -70,7 +71,7 @@ class _SearchState extends State<CreatePost> {
           backgroundColor: appColorWhite,
           elevation: 0,
           title: Text(
-            "New Post",
+            "new_post".tr,
             style: TextStyle(
                 fontSize: 20,
                 color: appColorBlack,
@@ -93,7 +94,7 @@ class _SearchState extends State<CreatePost> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
                 child: Text(
-                  'Done',
+                  'done'.tr,
                   style: TextStyle(
                       color: appColorBlack,
                       fontSize: 15,
@@ -140,7 +141,7 @@ class _SearchState extends State<CreatePost> {
                           filled: true,
                           hintStyle:
                               new TextStyle(color: Colors.white, fontSize: 12),
-                          hintText: "write something about post or add # tags",
+                          hintText: "write_something_add_hashtag".tr,
                           fillColor: appColorGrey,
                           focusedBorder: OutlineInputBorder(
                             borderSide:
@@ -170,7 +171,7 @@ class _SearchState extends State<CreatePost> {
                           filled: true,
                           hintStyle:
                               new TextStyle(color: Colors.white, fontSize: 12),
-                          hintText: "Type location where it was taken",
+                          hintText: "type_location_where_taken".tr,
                           fillColor: appColorGrey,
                           focusedBorder: OutlineInputBorder(
                             borderSide:

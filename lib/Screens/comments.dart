@@ -7,6 +7,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:pressfame_new/Notification/notification.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CommentsScreen extends StatefulWidget {
@@ -57,7 +58,7 @@ class _LoginPage1State extends State<CommentsScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
-                              "Comments",
+                              "comments".tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: "Poppins-Medium",
@@ -102,7 +103,7 @@ class _LoginPage1State extends State<CommentsScreen> {
                           controller: controller,
                           autofocus: true,
                           decoration: InputDecoration.collapsed(
-                            hintText: 'Add a comment...',
+                            hintText: 'add_a_comment'.tr,
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           // focusNode: focusNode,
@@ -308,7 +309,7 @@ class _LoginPage1State extends State<CommentsScreen> {
       secondaryActions: <Widget>[
         globalID == commenterId || globalID == widget.peerId
             ? IconSlideAction(
-                caption: 'Delete',
+                caption: 'delete'.tr,
                 color: Colors.red,
                 icon: Icons.delete,
                 onTap: () {

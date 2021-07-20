@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pressfame_new/Screens/publicProfile.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
+import 'package:get/get.dart';
 
 class FollowersScreen extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _PersonalInfoState extends State<FollowersScreen> {
           backgroundColor: appColorWhite,
           elevation: 0,
           title: Text(
-            "Supporters",
+            "supporters".tr,
             style: TextStyle(
                 fontSize: 20,
                 color: appColorBlack,
@@ -72,7 +73,7 @@ class _PersonalInfoState extends State<FollowersScreen> {
                     color: Colors.grey[500],
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
-                hintText: "Search",
+                hintText: "search".tr,
                 fillColor: appColorGrey,
                 prefixIcon: Padding(
                     padding: const EdgeInsets.all(10),

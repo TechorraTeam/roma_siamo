@@ -8,6 +8,7 @@ import 'package:pressfame_new/Screens/tabbar.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/share_preference/preferencesKey.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CreateProfile extends StatefulWidget {
@@ -55,7 +56,7 @@ class _LoginState extends State<CreateProfile> {
             backgroundColor: appColorWhite,
             elevation: 1,
             title: Text(
-              "Create Profile",
+              "create_profile".tr,
               style: TextStyle(
                   fontSize: 17,
                   color: appColorBlack,
@@ -84,13 +85,13 @@ class _LoginState extends State<CreateProfile> {
                       splitData.length > 0) {
                     updateData();
                   } else {
-                    toast("Error", "All fields are mandatory", context);
+                    toast("error".tr, "all_fields_mandatory".tr, context);
                   }
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
                   child: Text(
-                    'Done',
+                    'done'.tr,
                     style: TextStyle(
                         color: appColorBlack,
                         fontSize: 14,
@@ -144,7 +145,7 @@ class _LoginState extends State<CreateProfile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Age",
+            "age".tr,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: appColorBlack),
           ),
@@ -155,7 +156,7 @@ class _LoginState extends State<CreateProfile> {
               maxLines: 1,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
-              hintText: 'Enter your age'),
+              hintText: 'enter_age'.tr),
         ],
       ),
     );
@@ -169,7 +170,7 @@ class _LoginState extends State<CreateProfile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Gender",
+            "gender".tr,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: appColorBlack),
           ),
@@ -195,7 +196,7 @@ class _LoginState extends State<CreateProfile> {
                             hint: Padding(
                               padding: const EdgeInsets.only(top: 0),
                               child: Text(
-                                'Select Gender',
+                                'select_gender'.tr,
                                 style: TextStyle(
                                     color: Colors.grey[600], fontSize: 14),
                               ),
@@ -250,7 +251,7 @@ class _LoginState extends State<CreateProfile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Location",
+            "location".tr,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: appColorBlack),
           ),
@@ -292,7 +293,7 @@ class _LoginState extends State<CreateProfile> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "What makes you unique?",
+              "what_makes_you_unique".tr,
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

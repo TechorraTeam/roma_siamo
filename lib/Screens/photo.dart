@@ -11,6 +11,7 @@ import 'package:pressfame_new/Screens/tabbar.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:video_compress/video_compress.dart';
 import 'package:video_player/video_player.dart';
+import 'package:get/get.dart';
 
 class PhotoScreen extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class _MyHomePageState extends State<PhotoScreen> {
         backgroundColor: appColorWhite,
         elevation: 0,
         title: Text(
-          "New Post",
+          "new_post".tr,
           style: TextStyle(
               fontSize: 20, color: appColorBlack, fontWeight: FontWeight.bold),
         ),
@@ -88,7 +89,7 @@ class _MyHomePageState extends State<PhotoScreen> {
             child: Padding(
               padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
               child: Text(
-                'Next',
+                'next'.tr,
                 style: TextStyle(
                     color: appColorBlack,
                     fontSize: 15,
@@ -115,7 +116,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                               ))
                             : Center(
                                 child: Text(
-                                  "Select photo or video",
+                                  "select_photo_video".tr,
                                   style: TextStyle(
                                     color: appColorBlack,
                                   ),
@@ -134,7 +135,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                                   )
                                 : Center(
                                     child: Text(
-                                      "Select photo or video",
+                                      "select_photo_video".tr,
                                       style: TextStyle(
                                         color: appColorBlack,
                                       ),
@@ -142,7 +143,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                                   )
                             : Center(
                                 child: Text(
-                                  "Select photo or video",
+                                  "select_photo_video".tr,
                                   style: TextStyle(
                                     color: appColorBlack,
                                   ),
@@ -163,7 +164,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                                         selectImageSource();
                                       },
                                       child: Text(
-                                        "Photo",
+                                        "photo".tr,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: appColorBlack,
@@ -197,7 +198,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                                     selectImageSource();
                                   },
                                   child: Text(
-                                    "Photo",
+                                    "photo".tr,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: appColorBlack,
@@ -214,7 +215,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                                       selectVideoSource();
                                     },
                                     child: Text(
-                                      "Video",
+                                      "video".tr,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: appColorBlack,
@@ -247,7 +248,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                                   selectVideoSource();
                                 },
                                 child: Text(
-                                  "Video",
+                                  "video".tr,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: appColorBlack,
@@ -480,7 +481,7 @@ class _MyHomePageState extends State<PhotoScreen> {
             children: <Widget>[
               Container(height: 10.0),
               Text(
-                "Pick Video",
+                "pick_video".tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontFamily: "Poppins-Medium"),
               ),
@@ -497,7 +498,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                       color: appColorBlack,
                     ),
                     Container(width: 10.0),
-                    Text('Camera',
+                    Text('camera'.tr,
                         style: TextStyle(fontFamily: "Poppins-Medium"))
                   ],
                 ),
@@ -515,7 +516,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                       color: appColorBlack,
                     ),
                     Container(width: 10.0),
-                    Text('Gallery',
+                    Text('gallery'.tr,
                         style: TextStyle(fontFamily: "Poppins-Medium"))
                   ],
                 ),
@@ -543,7 +544,7 @@ class _MyHomePageState extends State<PhotoScreen> {
             children: <Widget>[
               Container(height: 10.0),
               Text(
-                "Pick Image",
+                "pick_image".tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontFamily: "Poppins-Medium"),
               ),
@@ -560,7 +561,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                       color: appColorBlack,
                     ),
                     Container(width: 10.0),
-                    Text('Camera',
+                    Text('camera'.tr,
                         style: TextStyle(fontFamily: "Poppins-Medium"))
                   ],
                 ),
@@ -578,7 +579,7 @@ class _MyHomePageState extends State<PhotoScreen> {
                       color: appColorBlack,
                     ),
                     Container(width: 10.0),
-                    Text('Gallery',
+                    Text('gallery'.tr,
                         style: TextStyle(fontFamily: "Poppins-Medium"))
                   ],
                 ),
