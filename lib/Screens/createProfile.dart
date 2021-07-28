@@ -263,6 +263,7 @@ class _LoginState extends State<CreateProfile> {
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                     color: appColorWhite,
                     border: Border.all(color: Colors.grey.shade300, width: 1)),
+                defaultCountry: DefaultCountry.Italy,
                 onCountryChanged: (value) {
                   setState(() {
                     countryValue = value;

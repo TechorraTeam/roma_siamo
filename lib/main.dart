@@ -27,8 +27,8 @@ Future main() async {
         GetMaterialApp(
           debugShowCheckedModeBanner: false,
           translations: Messages(), // your translations
-          //locale: Locale('it', 'IT'),
-          locale: Get.deviceLocale, // translations will be displayed in that locale
+          locale: Locale('it', 'IT'),
+          //locale: Get.deviceLocale, // translations will be displayed in that locale
           fallbackLocale: Locale('en', 'US'),
           title: "Roma Siamo Voi",
           theme: new ThemeData(

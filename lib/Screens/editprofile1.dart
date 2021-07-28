@@ -288,7 +288,7 @@ class _EditProfileState extends State<EditProfile> {
                           child: TextField(
                             controller: webController,
                             decoration: InputDecoration(
-                              hintText: "enter_website",
+                              hintText: "enter_website".tr,
                               hintStyle: TextStyle(
                                   color: Colors.grey[500], fontSize: 14),
                               alignLabelWithHint: true,
@@ -323,7 +323,7 @@ class _EditProfileState extends State<EditProfile> {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: Text(
-                            "Bio",
+                            "bio".tr,
                             style: TextStyle(
                                 fontFamily: "Poppins-Medium",
                                 color: appColorBlack,
