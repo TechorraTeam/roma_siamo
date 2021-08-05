@@ -51,7 +51,7 @@ class _SearchState extends State<CreatePost> {
         Placemark place = p.first;
 
         setState(() {
-          _currentAddress = "${place.name}, ${place.locality}";
+          _currentAddress = "${place.name}, ${place.subLocality}, ${place.locality}";
           //"${place.name}, ${place.locality},${place.administrativeArea},${place.country}";
           locationController.text = _currentAddress.toString();
           print(_currentAddress);
