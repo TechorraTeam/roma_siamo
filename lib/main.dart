@@ -29,7 +29,7 @@ Future main() async {
           translations: Messages(), // your translations
           locale: Locale('it', 'IT'),
           //locale: Get.deviceLocale, // translations will be displayed in that locale
-          fallbackLocale: Locale('en', 'US'),
+          fallbackLocale: Locale('it', 'IT'),
           title: "Roma Siamo Voi",
           theme: new ThemeData(
               accentColor: Colors.black,
