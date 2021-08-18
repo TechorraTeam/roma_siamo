@@ -104,7 +104,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ],
         ),
         Text(
-          "Hi " + globalName,
+          'Hi'.tr +' '+ globalName,
           style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.normal,

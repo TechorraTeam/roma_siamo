@@ -24,31 +24,31 @@ class _SearchState extends State<Search> {
   String stateValue;
   String gender;
   var gender1 = [
-    "Male",
-    "Female",
-    "Other",
+    "male".tr,
+    "female".tr,
+    "other".tr,
   ];
 
   String profession;
   var profession1 = [
-    "Actor",
-    "Singer",
-    "Model",
-    "Musician",
-    "Dancer",
-    "Artist",
-    "Filmmaker",
-    "Writer",
-    "Photographer",
-    "Producer",
-    "Film Crew",
-    "Composer",
-    "Influencer",
-    "Hair and Makeup",
-    "Stylist",
-    "Animator",
-    "Editor",
-    "Present"
+    "Actor".tr,
+    "Singer".tr,
+    "Model".tr,
+    "Musician".tr,
+    "Dancer".tr,
+    "Artist".tr,
+    "Filmmaker".tr,
+    "Writer".tr,
+    "Photographer".tr,
+    "Producer".tr,
+    "Film Crew".tr,
+    "Composer".tr,
+    "Influencer".tr,
+    "Hair Stylist".tr,
+    "Stylist".tr,
+    "Animator".tr,
+    "Editor".tr,
+    "Present".tr
   ];
 
   double startAge = 18;
@@ -489,51 +489,51 @@ class _SearchState extends State<Search> {
             ],
           ),
           Container(height: 5),
-          clearData == false
-              ? CSCPicker(
-                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
-                  showCities: false,
-                  showStates: true,
-                  dropdownItemStyle: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 13,
-                  ),
-                  dropdownHeadingStyle: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 13,
-                  ),
-                  selectedItemStyle: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 13,
-                  ),
-                  disabledDropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: appColorWhite,
-                      border: Border.all(color: Colors.grey, width: 1)),
-                  dropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: appColorWhite,
-                      border: Border.all(color: Colors.grey, width: 1)),
-                  onCountryChanged: (value) {
-                    setState(() {
-                      countryValue = value;
-                    });
-                  },
-                  onStateChanged: (value) {
-                    setState(() {
-                      stateValue = value;
-                    });
-                  },
-                  onCityChanged: (value) {
-                    setState(() {
-                      // cityValue = value;
-                    });
-                  },
-                )
-              : Container(
-                  height: 43,
-                  child: Center(child: const CupertinoActivityIndicator()),
-                ),
+          // clearData == false
+          //     ? CSCPicker(
+          //         flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+          //         showCities: false,
+          //         showStates: true,
+          //         dropdownItemStyle: TextStyle(
+          //           color: Colors.grey[600],
+          //           fontSize: 13,
+          //         ),
+          //         dropdownHeadingStyle: TextStyle(
+          //           color: Colors.grey[600],
+          //           fontSize: 13,
+          //         ),
+          //         selectedItemStyle: TextStyle(
+          //           color: Colors.grey[600],
+          //           fontSize: 13,
+          //         ),
+          //         disabledDropdownDecoration: BoxDecoration(
+          //             borderRadius: BorderRadius.all(Radius.circular(5)),
+          //             color: appColorWhite,
+          //             border: Border.all(color: Colors.grey, width: 1)),
+          //         dropdownDecoration: BoxDecoration(
+          //             borderRadius: BorderRadius.all(Radius.circular(5)),
+          //             color: appColorWhite,
+          //             border: Border.all(color: Colors.grey, width: 1)),
+          //         onCountryChanged: (value) {
+          //           setState(() {
+          //             countryValue = value;
+          //           });
+          //         },
+          //         onStateChanged: (value) {
+          //           setState(() {
+          //             stateValue = value;
+          //           });
+          //         },
+          //         onCityChanged: (value) {
+          //           setState(() {
+          //             // cityValue = value;
+          //           });
+          //         },
+          //       )
+          //     : Container(
+          //         height: 43,
+          //         child: Center(child: const CupertinoActivityIndicator()),
+          //       ),
           Row(
             children: [
               Expanded(

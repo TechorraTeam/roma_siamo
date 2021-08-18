@@ -25,9 +25,9 @@ class _LoginState extends State<CreateProfile> {
 
   String gender;
   var gender1 = [
-    "Male",
-    "Female",
-    "Other",
+    "male".tr,
+    "female".tr,
+    "other".tr,
   ];
 
   final TextEditingController _ageController = TextEditingController();
@@ -79,9 +79,9 @@ class _LoginState extends State<CreateProfile> {
                   });
                   if (_ageController.text.isNotEmpty &&
                       gender != null &&
-                      cityValue != null &&
-                      countryValue != null &&
-                      stateValue != null &&
+                      // cityValue != null &&
+                      // countryValue != null &&
+                      // stateValue != null &&
                       splitData.length > 0) {
                     updateData();
                   } else {
@@ -124,15 +124,15 @@ class _LoginState extends State<CreateProfile> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(height: 15),
+        Container (height: 15),
         ageWidget(),
-        Container(height: 15),
+        Container (height: 15),
         genderWidget(),
-        Container(height: 15),
-        locationWidget(),
-        Container(height: 15),
+        Container (height: 15),
+        // locationWidget(),
+        // Container(height: 15),
         interestTree(),
-        Container(height: 30),
+        Container (height: 30),
       ],
     );
   }
@@ -311,10 +311,10 @@ class _LoginState extends State<CreateProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buttonWidget("Actor"),
-                    buttonWidget("Singer"),
-                    buttonWidget("Model"),
-                    buttonWidget("Musician"),
+                    buttonWidget("Actor".tr),
+                    buttonWidget("Singer".tr),
+                    buttonWidget("Model".tr),
+                    buttonWidget("Musician".tr),
                   ],
                 ),
               ),
@@ -323,10 +323,10 @@ class _LoginState extends State<CreateProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buttonWidget("Dancer"),
-                    buttonWidget("Artist"),
-                    buttonWidget("Filmmaker"),
-                    buttonWidget("Writer"),
+                    buttonWidget("Dancer".tr),
+                    buttonWidget("Artist".tr),
+                    buttonWidget("Filmmaker".tr),
+                    buttonWidget("Writer".tr),
                   ],
                 ),
               ),
@@ -335,9 +335,9 @@ class _LoginState extends State<CreateProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buttonWidget("Photographer"),
-                    buttonWidget("Producer"),
-                    buttonWidget("Film Crew"),
+                    buttonWidget("Photographer".tr),
+                    buttonWidget("Producer".tr),
+                    buttonWidget("Film Crew".tr),
                   ],
                 ),
               ),
@@ -346,9 +346,9 @@ class _LoginState extends State<CreateProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buttonWidget("Composer"),
-                    buttonWidget("Influencer"),
-                    buttonWidget("Hair Stylist"),
+                    buttonWidget("Composer".tr),
+                    buttonWidget("Influencer".tr),
+                    buttonWidget("Hair Stylist".tr),
                   ],
                 ),
               ),
@@ -357,10 +357,10 @@ class _LoginState extends State<CreateProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buttonWidget("Stylist"),
-                    buttonWidget("Animator "),
-                    buttonWidget("Editor "),
-                    buttonWidget("Present"),
+                    buttonWidget("Stylist".tr),
+                    buttonWidget("Animator".tr),
+                    buttonWidget("Editor".tr),
+                    buttonWidget("Present".tr),
                   ],
                 ),
               ),
@@ -369,7 +369,7 @@ class _LoginState extends State<CreateProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buttonWidget("Creator"),
+                    buttonWidget("Creator".tr),
                   ],
                 ),
               ),
