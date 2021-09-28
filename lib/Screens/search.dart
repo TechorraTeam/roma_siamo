@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pressfame_new/Screens/publicProfile.dart';
@@ -276,7 +275,7 @@ class _SearchState extends State<Search> {
 
   Widget filterWidget(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20,top: 10),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
       child: Column(
         children: [
           Row(
@@ -357,7 +356,8 @@ class _SearchState extends State<Search> {
                 child: Column(
                   children: [
                     Text(
-                      "age".tr+": ${startAge.round().toString()}-${endAge.round().toString()}",
+                      "age".tr +
+                          ": ${startAge.round().toString()}-${endAge.round().toString()}",
                       style: TextStyle(fontSize: 12),
                     ),
                     SliderTheme(

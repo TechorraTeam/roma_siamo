@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -19,7 +18,6 @@ import 'forgotpass.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
-
 
 class Login extends StatefulWidget {
   @override
@@ -441,24 +439,28 @@ class _LoginState extends State<Login> {
   }
 
   //Facebook Login
-  loginWithFacebook () async {
+  loginWithFacebook() async {
     FacebookLogin facebookLogin = FacebookLogin();
-    try{
+    try {
       setState(() {
         emailNode.unfocus();
         passwordNode.unfocus();
       });
-      FacebookLoginResult facebookLoginResult = await facebookLogin.logIn(['email', 'public_profile']);
+      FacebookLoginResult facebookLoginResult =
+          await facebookLogin.logIn(['email', 'public_profile']);
       print(facebookLoginResult.errorMessage);
       switch (facebookLoginResult.status) {
-
         case FacebookLoginStatus.loggedIn:
           final token = facebookLoginResult.accessToken.token;
-          await http.get(Uri.parse('https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=${token}'));
-          UserCredential userCredential = await _auth.signInWithCredential(FacebookAuthProvider.credential(facebookLoginResult.accessToken.token));
+          await http.get(Uri.parse(
+              'https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=${token}'));
+          UserCredential userCredential = await _auth.signInWithCredential(
+              FacebookAuthProvider.credential(
+                  facebookLoginResult.accessToken.token));
           final user = userCredential.user;
           if (user.uid != null) {
-            checkUserExists(user.uid, user.email, user.displayName, user.photoURL);
+            checkUserExists(
+                user.uid, user.email, user.displayName, user.photoURL);
           }
           break;
 
@@ -474,11 +476,10 @@ class _LoginState extends State<Login> {
           return null;
           break;
       }
-    }catch(e){
+    } catch (e) {
       print(e);
       toast("error".tr, 'failed_facebook'.tr, context);
     }
-
   }
 
   Future<void> _signInWithGoogle() async {

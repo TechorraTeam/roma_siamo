@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'dart:io';
+import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as cloud;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pressfame_new/Model/report_model.dart';
 import 'package:pressfame_new/Notification/notification.dart';
 import 'package:pressfame_new/Screens/comments.dart';
 import 'package:pressfame_new/Screens/login.dart';
@@ -104,7 +107,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ],
         ),
         Text(
-          'Hi'.tr +' '+ globalName,
+          'Hi'.tr + ' ' + globalName,
           style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.normal,
@@ -392,40 +395,73 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   width: SizeConfig.blockSizeHorizontal * 4,
                 ),
                 document['location'].length > 0
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            document['userName'],
-                            style: TextStyle(
-                                fontSize: SizeConfig.safeBlockHorizontal * 3.5,
-                                color: appColorBlack),
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Container(
-                                width: 250,
-                                child: Text(
-                                  document['location'],
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize:
-                                          SizeConfig.safeBlockHorizontal * 3,
-                                      fontFamily: "Poppins-Medium",
-                                      color: Colors.black),
+                    ? Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              document['userName'],
+                              style: TextStyle(
+                                  fontSize:
+                                      SizeConfig.safeBlockHorizontal * 3.5,
+                                  color: appColorBlack),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  width: 250,
+                                  child: Text(
+                                    document['location'],
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize:
+                                            SizeConfig.safeBlockHorizontal * 3,
+                                        fontFamily: "Poppins-Medium",
+                                        color: Colors.black),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       )
-                    : Text(
-                        document['userName'],
-                        style: TextStyle(
-                            fontSize: SizeConfig.safeBlockHorizontal * 3.5,
-                            fontFamily: "Poppins-Medium",
-                            color: appColorBlack),
+                    : Expanded(
+                        child: Text(
+                          document['userName'],
+                          style: TextStyle(
+                              fontSize: SizeConfig.safeBlockHorizontal * 3.5,
+                              fontFamily: "Poppins-Medium",
+                              color: appColorBlack),
+                        ),
                       ),
+                // SizedBox(
+                //   width: 170,
+                // ),
+                /* ------------------------------ More button ----------------------------- */
+                if (globalID != document['idFrom'])
+                  IconButton(
+                      onPressed: () {
+                        // Navigator.of(context);
+
+                        ReportModel reportModel = ReportModel(
+                            reportByName: globalName,
+                            reportByPic: globalImage,
+                            reportTime: DateTime.now().millisecondsSinceEpoch,
+                            reportById: globalID,
+                            postByName: document['userName'],
+                            postByPic: document['userImage'],
+                            postById: document['idFrom'],
+                            postRef: document.reference,
+                            orderNo: 1,
+                            status: 'pending');
+                        _settingModalBottomSheet(context, reportModel);
+                      },
+                      icon: Icon(
+                        Icons.more_vert_outlined,
+                        color: Colors.black,
+                        size: 25,
+                      )),
               ],
             ),
           ),
@@ -887,7 +923,61 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
   }
-}
+
+/* --------------------------- Report Bottom Sheet -------------------------- */
+
+  void _settingModalBottomSheet(context, ReportModel reportModel) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                TextButton(
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20))),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white10)),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all<OutlinedBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue)),
+                    onPressed: () {
+                      reportPost(reportModel);
+                      Navigator.of(context).pop();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(
+                        'Report',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
 //InViewNotifierWidget
 // Stack(
 //   children: [
@@ -924,3 +1014,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 //     )
 //   ],
 // ),
+  }
+
+  /* ------------------------- report save to firebase ------------------------ */
+  reportPost(ReportModel reportModel) async {
+    var snapshot = await FirebaseFirestore.instance
+        .collection("ReportedPost")
+        .where("PostRef", isEqualTo: reportModel.postRef)
+        .where("PostByRef", isEqualTo: reportModel.reportById)
+        .get();
+    if (snapshot.docs.length < 1) {
+      cloud.FirebaseFirestore.instance
+          .collection("ReportedPost")
+          .add(reportModel.toMap());
+      Get.snackbar("Success", "Reported Succesfully",
+          backgroundColor: Colors.green.withOpacity(0.4));
+    } else {
+      Get.snackbar("Alert", "Already Reported",
+          backgroundColor: Colors.red.withOpacity(0.4));
+    }
+  }
+}

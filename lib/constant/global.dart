@@ -288,7 +288,9 @@ actionAlertBox(
         title: title,
         content: content,
         // ignore: deprecated_member_use
-        actions: <Widget>[FlatButton(child: Text('ok'.tr), onPressed: onPressed)],
+        actions: <Widget>[
+          FlatButton(child: Text('ok'.tr), onPressed: onPressed)
+        ],
       );
     },
   );
