@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 
@@ -883,7 +882,7 @@ Future<UploadTask> uploadFile2(File file) async {
 
   // Create a Reference to the file
   var timeKey = new DateTime.now();
-  Reference ref = FirebaseStorage.instance
+  Reference ref = await FirebaseStorage.instance
       .ref()
       .child('profileImage')
       .child('/$timeKey.jpg');

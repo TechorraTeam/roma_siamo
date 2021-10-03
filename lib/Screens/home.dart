@@ -30,6 +30,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timeago/timeago.dart';
 import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -189,7 +190,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
         ),
         InkWell(
-          onTap: () {},
+          onTap: () async {
+            String _url = 'https://www.ciroscognamiglio.it/';
+            await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+          },
           child: Row(
             children: [
               Image.asset('assets/images/help.png',
@@ -206,24 +210,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ],
           ),
         ),
-        InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Image.asset('assets/images/about.png',
-                  height: 24, color: appColorBlack),
-              Container(width: 10),
-              Text(
-                "about".tr,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: appColorBlack,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
-        ),
+        // InkWell(
+        //   onTap: () {},
+        //   child: Row(
+        //     children: [
+        //       Image.asset('assets/images/about.png',
+        //           height: 24, color: appColorBlack),
+        //       Container(width: 10),
+        //       Text(
+        //         "about".tr,
+        //         style: TextStyle(
+        //           fontSize: 18,
+        //           color: appColorBlack,
+        //           fontWeight: FontWeight.normal,
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         InkWell(
           onTap: () async {
             _signOut().then((value) async {

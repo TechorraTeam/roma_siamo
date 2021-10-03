@@ -459,7 +459,7 @@ class _HomeState extends State<ViewPublicPost> {
                 child: Text(
                   format(DateTime.fromMillisecondsSinceEpoch(int.parse(
                     document["timestamp"],
-                  ))),
+                  )), locale: 'it'),
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 14,

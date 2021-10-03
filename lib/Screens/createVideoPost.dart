@@ -8,6 +8,7 @@ import 'package:pressfame_new/Screens/tabbar.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:translator/translator.dart';
 import 'package:video_player/video_player.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:get/get.dart';
@@ -59,6 +60,7 @@ class _SearchState extends State<CreatVideoePost> {
 
 
   Future getUserCurrentLocation() async {
+    await Geolocator().checkGeolocationPermissionStatus();
     await Geolocator().getCurrentPosition().then((position) {
       setState(() {
         currentLocation = position;
@@ -75,10 +77,18 @@ class _SearchState extends State<CreatVideoePost> {
         Placemark place = p[0];
 
         setState(() {
-          _currentAddress = "${place.name}, ${place.locality}";
+          _currentAddress = "${place.name}, ${place.subLocality} ${place.locality}";
+          final translator = GoogleTranslator();
+          translator.translate(_currentAddress, to: 'it').then((value){
+            print(value.text);
+            print("hello "+_currentAddress);
+            locationController.text = value.text;
+          });
+          translator.translate('Rome', to: 'it').then((value){
+            print("trns: "+value.text);
+          });
           //"${place.name}, ${place.locality},${place.administrativeArea},${place.country}";
-          print(_currentAddress);
-          locationController.text = _currentAddress.toString();
+
         });
       } catch (e) {
         print(e);
@@ -148,6 +158,7 @@ class _SearchState extends State<CreatVideoePost> {
                         },
                         iconSize: 30,
                       ),
+                      if(currentLocation != null)
                       GestureDetector(
                         onTap: () {
                           addPost(context);
@@ -157,6 +168,12 @@ class _SearchState extends State<CreatVideoePost> {
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
                       )
+                      else
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: Center(child: Container(width: 15, height: 15, child: CircularProgressIndicator(strokeWidth: 2.0,)),),
+                        ),
+
                     ],
                   ),
                 ),

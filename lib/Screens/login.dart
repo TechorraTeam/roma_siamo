@@ -14,6 +14,7 @@ import 'package:pressfame_new/helper/sizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pressfame_new/share_preference/preferencesKey.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'forgotpass.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:http/http.dart' as http;
@@ -119,8 +120,11 @@ class _LoginState extends State<Login> {
                                         ),
                                       ),
                                       //numberButton(),
+                                      if(GetPlatform.isIOS)
+                                      appleButton(),
                                       googleButton(),
                                       facebookButton(),
+
                                     ],
                                   ),
                                   isLoading == true
@@ -328,6 +332,13 @@ class _LoginState extends State<Login> {
     );
   }
 
+  Widget appleButton (){
+    return SignInWithAppleButton(
+      style: SignInWithAppleButtonStyle.white,
+      onPressed: loginWithApple
+    );
+  }
+
   Widget facebookButton() {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -436,6 +447,41 @@ class _LoginState extends State<Login> {
         });
       });
     });
+  }
+
+  // apple login
+  loginWithApple() async {
+    try{
+      setState(() {
+        emailNode.unfocus();
+        passwordNode.unfocus();
+      });
+      final result = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+      final oAuthProvider = OAuthProvider('apple.com');
+      final credential = oAuthProvider.credential(
+        idToken: result.identityToken,
+        accessToken: result.authorizationCode,
+      );
+      final authResult = await _auth.signInWithCredential(credential);
+      final user = authResult.user;
+      if (user.uid != null) {
+        checkUserExists(user.uid, user.email??'', user.displayName??'', user.photoURL??'');
+        // Navigator.push(
+        //   context,
+        //   CupertinoPageRoute(
+        //     builder: (context) => SignUp(),
+        //   ),
+        // );
+      }
+    }catch(error){
+      print(error);
+      toast("error".tr, 'failed_facebook'.tr, context);
+    }
   }
 
   //Facebook Login

@@ -97,7 +97,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         child: Padding(
                           padding: const EdgeInsets.all(4),
                           child: CircleAvatar(
-                            backgroundImage: globalImage.length > 0
+                            backgroundImage: (globalImage??'').length > 0
                                 ? NetworkImage(globalImage)
                                 : NetworkImage(
                                     "${"https://www.nicepng.com/png/detail/136-1366211_group-of-10-guys-login-user-icon-png.png"}"),

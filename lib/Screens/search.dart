@@ -234,25 +234,25 @@ class _SearchState extends State<Search> {
                           padding: const EdgeInsets.only(left: 10, right: 20),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.location_on,
-                                color: Colors.grey[600],
-                                size: 22,
-                              ),
-                              Container(width: 3),
-                              Expanded(
-                                child: Text(
-                                  lists[index]["city"] +
-                                      ", " +
-                                      lists[index]["state"] +
-                                      ", " +
-                                      lists[index]["country"],
-                                  style: TextStyle(
-                                    color: appColorBlack,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ),
+                              // Icon(
+                              //   Icons.location_on,
+                              //   color: Colors.grey[600],
+                              //   size: 22,
+                              // ),
+                              // Container(width: 3),
+                              // Expanded(
+                              //   child: Text(
+                              //     lists[index]["city"] +
+                              //         ", " +
+                              //         lists[index]["state"] +
+                              //         ", " +
+                              //         lists[index]["country"],
+                              //     style: TextStyle(
+                              //       color: appColorBlack,
+                              //       fontSize: 13,
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),

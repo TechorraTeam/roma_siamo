@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pressfame_new/Screens/tabbar.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'package:get/get.dart';
+import 'package:translator/translator.dart';
 
 
 // ignore: must_be_immutable
@@ -35,6 +36,7 @@ class _SearchState extends State<CreatePost> {
   }
 
   Future getUserCurrentLocation() async {
+    await Geolocator().checkGeolocationPermissionStatus();
     await Geolocator().getCurrentPosition().then((position) {
       setState(() {
         currentLocation = position;
@@ -51,10 +53,17 @@ class _SearchState extends State<CreatePost> {
         Placemark place = p.first;
 
         setState(() {
-          _currentAddress = "${place.name}, ${place.subLocality}, ${place.locality}";
+          _currentAddress = "${place.name}, ${place.subLocality} ${place.locality}";
+          final translator = GoogleTranslator();
+          translator.translate(_currentAddress, to: 'it').then((value){
+            print(value.text);
+            locationController.text = value.text;
+            print(_currentAddress);
+          });
+          translator.translate('Rome', to: 'it').then((value){
+            print("trns: "+value.text);
+          });
           //"${place.name}, ${place.locality},${place.administrativeArea},${place.country}";
-          locationController.text = _currentAddress.toString();
-          print(_currentAddress);
         });
       } catch (e) {
         print(e);
@@ -87,7 +96,8 @@ class _SearchState extends State<CreatePost> {
                 color: appColorBlack,
               )),
           actions: [
-            InkWell(
+            if(currentLocation != null)
+              InkWell(
               onTap: () {
                 addPost(context);
               },
@@ -102,6 +112,11 @@ class _SearchState extends State<CreatePost> {
                 ),
               ),
             )
+            else
+              Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: Center(child: Container(width: 15, height: 15, child: CircularProgressIndicator(strokeWidth: 2.0,)),),
+              ),
           ],
         ),
         body: SingleChildScrollView(
@@ -161,6 +176,15 @@ class _SearchState extends State<CreatePost> {
                       child: TextField(
                         controller: locationController,
                         style: TextStyle(color: Colors.white),
+                        onSubmitted: (val){
+                          final translator = GoogleTranslator();
+                          translator.translate(val, to: 'it').then((value){
+                            print(value.text);
+                            setState(() {
+                              locationController.text = value.text;
+                            });
+                          });
+                        },
                         maxLines: 1,
                         decoration: new InputDecoration(
                           border: new OutlineInputBorder(
