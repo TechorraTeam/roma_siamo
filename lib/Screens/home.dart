@@ -1025,7 +1025,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     var snapshot = await FirebaseFirestore.instance
         .collection("ReportedPost")
         .where("PostRef", isEqualTo: reportModel.postRef)
-        .where("PostByRef", isEqualTo: reportModel.reportById)
+        .where("ReportById", isEqualTo: reportModel.reportById)
         .get();
     if (snapshot.docs.length < 1) {
       cloud.FirebaseFirestore.instance
