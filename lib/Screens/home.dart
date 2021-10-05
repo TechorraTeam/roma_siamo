@@ -192,7 +192,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         InkWell(
           onTap: () async {
             String _url = 'https://www.ciroscognamiglio.it/';
-            await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+            await canLaunch(_url)
+                ? await launch(_url)
+                : throw 'Could not launch $_url';
           },
           child: Row(
             children: [
@@ -322,32 +324,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   Widget allPost(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection('post')
-          .orderBy('timestamp', descending: true)
-          //.limit(limit)
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Center(
-              child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(appColor)));
-        } else {
-          return Padding(
-            padding: const EdgeInsets.only(left: 0, right: 0),
-            child: ListView.builder(
-              padding: EdgeInsets.only(bottom: 10),
-              shrinkWrap: true,
-              //physics: NeverScrollableScrollPhysics(),
-              itemCount: snapshot.data.docs.length,
-              //controller: listScrollController,
-              itemBuilder: (context, index) =>
-                  postDetails(snapshot.data.docs[index]),
-            ),
-          );
-        }
-      },
-    );
+        stream: FirebaseFirestore.instance
+            .collection('post')
+            .orderBy('timestamp', descending: true)
+            //.limit(limit)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+                child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(appColor)));
+          } else {
+            return Padding(
+              padding: const EdgeInsets.only(left: 0, right: 0),
+              child: ListView.builder(
+                padding: EdgeInsets.only(bottom: 10),
+                shrinkWrap: true,
+                //physics: NeverScrollableScrollPhysics(),
+                itemCount: snapshot.data.docs.length,
+                //controller: listScrollController,
+                itemBuilder: (context, index) {
+                  if (snapshot.data.docs[index]["hideBy"].contains(globalID)) {
+                    return SizedBox();
+                  } else {
+                    return postDetails(snapshot.data.docs[index]);
+                  }
+                },
+              ),
+            );
+          }
+        });
   }
 
   Widget postDetails(DocumentSnapshot document) {
@@ -935,49 +941,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         context: context,
         builder: (BuildContext bc) {
           return Container(
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: new Wrap(
               children: <Widget>[
-                TextButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<OutlinedBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white10)),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextButton(
-                    style: ButtonStyle(
-                        shape: MaterialStateProperty.all<OutlinedBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20))),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue)),
-                    onPressed: () {
+                ListTile(
+                    title: Text("Report Post"),
+                    onTap: () {
                       reportPost(reportModel);
+                      hidePost(globalID, reportModel.postRef);
                       Navigator.of(context).pop();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Text(
-                        'Report',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ),
+                    }),
+                ListTile(
+                    title: Text("Hide Post"),
+                    onTap: () {
+                      hidePost(globalID, reportModel.postRef);
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
+                    title: Text("Cancle"),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    })
               ],
             ),
           );
@@ -1036,6 +1019,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     } else {
       Get.snackbar("Alert", "Already Reported",
           backgroundColor: Colors.red.withOpacity(0.4));
+    }
+  }
+
+  hidePost(userId, DocumentReference postRef) async {
+    var post = await postRef.get();
+    if (post.exists) {
+      List hideBy = post["hideBy"];
+      hideBy.add(userId);
+      postRef.update({"hideBy": hideBy});
     }
   }
 }

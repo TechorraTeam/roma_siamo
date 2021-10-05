@@ -120,11 +120,9 @@ class _LoginState extends State<Login> {
                                         ),
                                       ),
                                       //numberButton(),
-                                      if(GetPlatform.isIOS)
-                                      appleButton(),
+                                      if (GetPlatform.isIOS) appleButton(),
                                       googleButton(),
                                       facebookButton(),
-
                                     ],
                                   ),
                                   isLoading == true
@@ -332,11 +330,9 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget appleButton (){
+  Widget appleButton() {
     return SignInWithAppleButton(
-      style: SignInWithAppleButtonStyle.white,
-      onPressed: loginWithApple
-    );
+        style: SignInWithAppleButtonStyle.white, onPressed: loginWithApple);
   }
 
   Widget facebookButton() {
@@ -451,7 +447,7 @@ class _LoginState extends State<Login> {
 
   // apple login
   loginWithApple() async {
-    try{
+    try {
       setState(() {
         emailNode.unfocus();
         passwordNode.unfocus();
@@ -470,7 +466,8 @@ class _LoginState extends State<Login> {
       final authResult = await _auth.signInWithCredential(credential);
       final user = authResult.user;
       if (user.uid != null) {
-        checkUserExists(user.uid, user.email??'', user.displayName??'', user.photoURL??'');
+        checkUserExists(user.uid, user.email ?? '', user.displayName ?? '',
+            user.photoURL ?? '');
         // Navigator.push(
         //   context,
         //   CupertinoPageRoute(
@@ -478,7 +475,7 @@ class _LoginState extends State<Login> {
         //   ),
         // );
       }
-    }catch(error){
+    } catch (error) {
       print(error);
       toast("error".tr, 'failed_facebook'.tr, context);
     }
@@ -499,7 +496,7 @@ class _LoginState extends State<Login> {
         case FacebookLoginStatus.loggedIn:
           final token = facebookLoginResult.accessToken.token;
           await http.get(Uri.parse(
-              'https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=${token}'));
+              'https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=$token'));
           UserCredential userCredential = await _auth.signInWithCredential(
               FacebookAuthProvider.credential(
                   facebookLoginResult.accessToken.token));

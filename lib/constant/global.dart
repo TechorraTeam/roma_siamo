@@ -882,7 +882,7 @@ Future<UploadTask> uploadFile2(File file) async {
 
   // Create a Reference to the file
   var timeKey = new DateTime.now();
-  Reference ref = await FirebaseStorage.instance
+  Reference ref = FirebaseStorage.instance
       .ref()
       .child('profileImage')
       .child('/$timeKey.jpg');

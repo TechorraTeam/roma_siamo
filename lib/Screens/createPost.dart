@@ -11,7 +11,6 @@ import 'package:pressfame_new/constant/global.dart';
 import 'package:get/get.dart';
 import 'package:translator/translator.dart';
 
-
 // ignore: must_be_immutable
 class CreatePost extends StatefulWidget {
   File image;
@@ -53,15 +52,16 @@ class _SearchState extends State<CreatePost> {
         Placemark place = p.first;
 
         setState(() {
-          _currentAddress = "${place.name}, ${place.subLocality} ${place.locality}";
+          _currentAddress =
+              "${place.name}, ${place.subLocality} ${place.locality}";
           final translator = GoogleTranslator();
-          translator.translate(_currentAddress, to: 'it').then((value){
+          translator.translate(_currentAddress, to: 'it').then((value) {
             print(value.text);
             locationController.text = value.text;
             print(_currentAddress);
           });
-          translator.translate('Rome', to: 'it').then((value){
-            print("trns: "+value.text);
+          translator.translate('Rome', to: 'it').then((value) {
+            print("trns: " + value.text);
           });
           //"${place.name}, ${place.locality},${place.administrativeArea},${place.country}";
         });
@@ -96,26 +96,33 @@ class _SearchState extends State<CreatePost> {
                 color: appColorBlack,
               )),
           actions: [
-            if(currentLocation != null)
+            if (currentLocation != null)
               InkWell(
-              onTap: () {
-                addPost(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
-                child: Text(
-                  'done'.tr,
-                  style: TextStyle(
-                      color: appColorBlack,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
+                onTap: () {
+                  addPost(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
+                  child: Text(
+                    'done'.tr,
+                    style: TextStyle(
+                        color: appColorBlack,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-            )
+              )
             else
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
-                child: Center(child: Container(width: 15, height: 15, child: CircularProgressIndicator(strokeWidth: 2.0,)),),
+                child: Center(
+                  child: Container(
+                      width: 15,
+                      height: 15,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2.0,
+                      )),
+                ),
               ),
           ],
         ),
@@ -176,9 +183,9 @@ class _SearchState extends State<CreatePost> {
                       child: TextField(
                         controller: locationController,
                         style: TextStyle(color: Colors.white),
-                        onSubmitted: (val){
+                        onSubmitted: (val) {
                           final translator = GoogleTranslator();
-                          translator.translate(val, to: 'it').then((value){
+                          translator.translate(val, to: 'it').then((value) {
                             print(value.text);
                             setState(() {
                               locationController.text = value.text;
@@ -252,9 +259,11 @@ class _SearchState extends State<CreatePost> {
             'location': locationController.text ?? "",
             'latitude': currentLocation.latitude,
             'longitude': currentLocation.longitude,
-            'geoPoint': GeoPoint(currentLocation.latitude, currentLocation.longitude),
+            'geoPoint':
+                GeoPoint(currentLocation.latitude, currentLocation.longitude),
             'likes': [],
             'comments': [],
+            'hideBy': [],
             'videoUrl': '',
           }).then((value) {
             setState(() {
