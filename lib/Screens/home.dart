@@ -944,20 +944,20 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             child: new Wrap(
               children: <Widget>[
                 ListTile(
-                    title: Text("Report Post"),
+                    title: Text("report_post".tr),
                     onTap: () {
                       reportPost(reportModel);
                       hidePost(globalID, reportModel.postRef);
                       Navigator.of(context).pop();
                     }),
                 ListTile(
-                    title: Text("Hide Post"),
+                    title: Text("hide_post".tr),
                     onTap: () {
                       hidePost(globalID, reportModel.postRef);
                       Navigator.of(context).pop();
                     }),
                 ListTile(
-                    title: Text("Cancle"),
+                    title: Text("Cancel".tr),
                     onTap: () {
                       Navigator.of(context).pop();
                     })
@@ -1014,10 +1014,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       cloud.FirebaseFirestore.instance
           .collection("ReportedPost")
           .add(reportModel.toMap());
-      Get.snackbar("Success", "Reported Succesfully",
+      Get.snackbar("success".tr, "reported_succesfully".tr,
           backgroundColor: Colors.green.withOpacity(0.4));
     } else {
-      Get.snackbar("Alert", "Already Reported",
+      Get.snackbar("Alert".tr, "Already Reported".tr,
           backgroundColor: Colors.red.withOpacity(0.4));
     }
   }
@@ -1027,6 +1027,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     if (post.exists) {
       List hideBy = post["hideBy"];
       hideBy.add(userId);
+
       postRef.update({"hideBy": hideBy});
     }
   }

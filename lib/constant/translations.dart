@@ -22,7 +22,8 @@ class Messages extends Translations {
           'delete': 'Delete',
           'new_post': 'New Post',
           'done': 'Done',
-          'write_something_add_hashtag': 'write something about post or add #tags',
+          'write_something_add_hashtag':
+              'write something about post or add #tags',
           'type_location_where_taken': 'Type location where it was taken',
           'create_profile': 'Create Profile',
           'error': 'Error',
@@ -53,11 +54,13 @@ class Messages extends Translations {
           'search': 'Search',
           'supporting': 'Supporting',
           'forgot_your_password': 'Forgot your password?',
-          'enter_registered_email': 'Enter Your registered email below to receive \n password reset instruction',
+          'enter_registered_email':
+              'Enter Your registered email below to receive \n password reset instruction',
           'enter_email': 'Enter Your Email',
           'enter_password': 'Enter Password',
           'next': 'Next',
-          'enter_email_reset_password': 'Please, Enter your Email Address for reset your password',
+          'enter_email_reset_password':
+              'Please, Enter your Email Address for reset your password',
           'back_to_login': 'Back to login',
           'home': 'Home',
           'account': 'Account',
@@ -76,9 +79,11 @@ class Messages extends Translations {
           'failed_google': 'Failed to sign in with Google',
           'failed_facebook': 'Failed to sign in with Facebook',
           'activity': 'Activity',
-          'currently_no_notifications': 'Currently you don\'t have any notifications',
+          'currently_no_notifications':
+              'Currently you don\'t have any notifications',
           'personal_info': 'Personal Information',
-          'hidden_info': 'This information won\'t be display \n in public profile',
+          'hidden_info':
+              'This information won\'t be display \n in public profile',
           'email': 'Email',
           'phone': 'Phone',
           'mobile': 'mobile',
@@ -107,7 +112,8 @@ class Messages extends Translations {
           'send': 'Send',
           'something_went_wrong': 'Something went wrong please try again',
           'enter_username': 'Enter Username',
-          'password_condition': 'Fields is empty or password length should be between 6-8 characters.',
+          'password_condition':
+              'Fields is empty or password length should be between 6-8 characters.',
           'already_have_account': 'Already have an account?',
           'likes': 'likes',
           'ok': 'OK',
@@ -140,7 +146,12 @@ class Messages extends Translations {
           'Editor': 'Editor',
           'Present': 'Present',
           'Creator': 'Creator',
-          'Hi': 'Hi'
+          'Hi': 'Hi',
+          'Success': 'Success',
+          'reported_succesfully': 'Reported Succesfully',
+          'report_post': 'Report Post',
+          'hide_post': 'Hide Post',
+          'Cancel': 'Cancel'
         },
         // Italian
         'it_IT': {
@@ -286,7 +297,11 @@ class Messages extends Translations {
           'Editor': 'Editore',
           'Present': 'Presente',
           'Creator': 'Creatore',
-          'Hi': 'Ciao'
+          'Hi': 'Ciao',
+          'reported_succesfully': 'Segnalato con successo',
+          'report_post': 'Segnala post',
+          'hide_post': 'Nascondi messaggio',
+          'Cancel': 'Annulla',
         },
       };
 }
