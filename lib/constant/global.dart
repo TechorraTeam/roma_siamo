@@ -891,10 +891,12 @@ Future<UploadTask> uploadFile2(File file) async {
       contentType: 'image/jpeg',
       customMetadata: {'picked-file-path': file.path});
 
+  File fileUpload = File(file.path);
+
   if (kIsWeb) {
     uploadTask = ref.putData(await file.readAsBytes(), metadata);
   } else {
-    uploadTask = ref.putFile(File(file.path), metadata);
+    uploadTask = ref.putFile(fileUpload, metadata);
   }
 
   return Future.value(uploadTask);
