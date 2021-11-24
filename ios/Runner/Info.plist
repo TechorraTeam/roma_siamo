@@ -84,6 +84,8 @@
 	<string>Location is used to show where something is posted</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is used to show where something is posted</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To upload a video to the app</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Photos taken from app can be saved</string>
 	<key>NSPhotoLibraryUsageDescription</key>

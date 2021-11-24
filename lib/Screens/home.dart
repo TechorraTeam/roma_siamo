@@ -321,8 +321,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
     );
   }
-
+  List blockedUsers;
   Widget allPost(BuildContext context) {
+
+    FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser.uid).get().then((value) async {
+      if(value != null){
+        print(value.data());
+        blockedUsers = value.get('blockedUsers');
+      }
+    });
+
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('post')
@@ -344,7 +352,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 itemCount: snapshot.data.docs.length,
                 //controller: listScrollController,
                 itemBuilder: (context, index) {
-                  if (snapshot.data.docs[index]["hideBy"].contains(globalID)) {
+                  if (blockedUsers == null || snapshot.data.docs[index]["hideBy"].contains(globalID) || (blockedUsers??[]).contains(snapshot.data.docs[index]["idFrom"])) {
                     return SizedBox();
                   } else {
                     return postDetails(snapshot.data.docs[index]);
@@ -957,6 +965,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       Navigator.of(context).pop();
                     }),
                 ListTile(
+                    title: Text("block_user".tr),
+                    onTap: () {
+                      blockUser(reportModel.postRef);
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
                     title: Text("Cancel".tr),
                     onTap: () {
                       Navigator.of(context).pop();
@@ -1030,5 +1044,29 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
       postRef.update({"hideBy": hideBy});
     }
+  }
+
+  blockUser(DocumentReference postRef) async {
+    FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser.uid).get().then((value) async {
+      if(value != null){
+        DocumentSnapshot post = await postRef.get();
+        print(value.data());
+        List blockedOnes = value.data()['blockedUsers']??[];
+        String idFrom = post.get('idFrom');
+        (blockedOnes??[]).add(idFrom);
+
+        FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser.uid).update({
+          'blockedUsers': blockedOnes
+        }).then((value){
+          setState(() {
+            blockedUsers = blockedOnes;
+          });
+          Get.snackbar("success".tr, "user_blocked_success".tr,
+              backgroundColor: Colors.green.withOpacity(0.4));
+        });
+
+      }
+    });
+
   }
 }

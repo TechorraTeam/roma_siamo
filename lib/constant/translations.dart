@@ -302,6 +302,8 @@ class Messages extends Translations {
           'report_post': 'Segnala post',
           'hide_post': 'Nascondi messaggio',
           'Cancel': 'Annulla',
+          'block_user': 'Blocca utente',
+          'user_blocked_success': 'utente bloccato con successo'
         },
       };
 }
