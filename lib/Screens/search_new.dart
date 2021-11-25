@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pressfame_new/Controllers/post_controller.dart';
 import 'package:pressfame_new/Screens/publicProfile.dart';
 import 'package:pressfame_new/Screens/viewPublicPost.dart';
 import 'package:pressfame_new/constant/global.dart';
@@ -18,21 +20,43 @@ class SerchFeed extends StatefulWidget {
 
 class _ProfileState extends State<SerchFeed>
     with SingleTickerProviderStateMixin {
-  TextEditingController controller = new TextEditingController();
+  TextEditingController searchTextController = new TextEditingController();
   bool isLoading = false;
   int limit = 10;
   ScrollController listScrollController = ScrollController();
   FocusNode focus = new FocusNode();
   RegExp exp = new RegExp(r"\B#\w\w+");
   List allList;
+  bool blockedUserFetched = false;
   TabController tabController;
-
+  // List blockedUsers = [];
+  PostController postController = Get.put(PostController());
   @override
   void initState() {
+    // getBlockUser();
     tabController = new TabController(length: 2, vsync: this);
     focus.addListener(_onFocusChange);
     super.initState();
   }
+
+  // getBlockUser() async {
+  //   setState(() {
+  //     blockedUserFetched = false;
+  //   });
+  //   FirebaseFirestore.instance
+  //       .collection('user')
+  //       .doc(FirebaseAuth.instance.currentUser.uid)
+  //       .get()
+  //       .then((value) async {
+  //     if (value != null) {
+  //       print(value.data());
+  //       blockedUsers = value.get('blockedUsers');
+  //     }
+  //   });
+  //   setState(() {
+  //     blockedUserFetched = true;
+  //   });
+  // }
 
   void _onFocusChange() {
     print("Focus: " + focus.hasFocus.toString());
@@ -43,6 +67,7 @@ class _ProfileState extends State<SerchFeed>
       focus.hasFocus;
       print("Ontap: " + focus.hasFocus.toString());
     });
+
     FocusScope.of(context).requestFocus(focus);
   }
 
@@ -84,6 +109,8 @@ class _ProfileState extends State<SerchFeed>
 
   @override
   Widget build(BuildContext context) {
+    postController.getBlockUser();
+    postController.getPostImages();
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: appColorWhite,
@@ -103,7 +130,7 @@ class _ProfileState extends State<SerchFeed>
                       onPressed: () {
                         setState(() {
                           _searchResult.clear();
-                          controller.clear();
+                          searchTextController.clear();
                           focus.unfocus();
                         });
                       },
@@ -117,55 +144,61 @@ class _ProfileState extends State<SerchFeed>
                       )),
                 )
               : Container(),
-              // Container(
-              //     width: 80,
-              //     child: IconButton(
-              //         padding: const EdgeInsets.all(0),
-              //         onPressed: () {
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(builder: (context) => Search()),
-              //           );
-              //         },
-              //         icon: Text(
-              //           "Accounts",
-              //           maxLines: 1,
-              //           style: TextStyle(
-              //               color: appColorBlack,
-              //               fontWeight: FontWeight.bold,
-              //               fontSize: 14),
-              //         )),
-              //   ),
+          // Container(
+          //     width: 80,
+          //     child: IconButton(
+          //         padding: const EdgeInsets.all(0),
+          //         onPressed: () {
+          //           Navigator.push(
+          //             context,
+          //             MaterialPageRoute(builder: (context) => Search()),
+          //           );
+          //         },
+          //         icon: Text(
+          //           "Accounts",
+          //           maxLines: 1,
+          //           style: TextStyle(
+          //               color: appColorBlack,
+          //               fontWeight: FontWeight.bold,
+          //               fontSize: 14),
+          //         )),
+          //   ),
           Container(width: 10),
         ],
       ),
-      body: focus.hasFocus == true
-          ? NestedScrollView(
-              headerSliverBuilder: (context, value) {
-                return [
-                  SliverToBoxAdapter(
-                    child: TabBar(
-                      controller: tabController,
-                      labelColor: appColorBlack,
-                      // indicatorSize: TabBarIndicatorSize.label,
-                      unselectedLabelColor: Colors.grey,
-                      indicatorColor: appColorBlack,
-                      tabs: [
-                        Tab(icon: Text("tags".tr)),
-                        Tab(icon: Text("accounts".tr)),
-                      ],
+      body: GetBuilder<PostController>(builder: (postController) {
+        return !postController.blockedUserFetched
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : focus.hasFocus == true
+                ? NestedScrollView(
+                    headerSliverBuilder: (context, value) {
+                      return [
+                        SliverToBoxAdapter(
+                          child: TabBar(
+                            controller: tabController,
+                            labelColor: appColorBlack,
+                            // indicatorSize: TabBarIndicatorSize.label,
+                            unselectedLabelColor: Colors.grey,
+                            indicatorColor: appColorBlack,
+                            tabs: [
+                              Tab(icon: Text("tags".tr)),
+                              Tab(icon: Text("accounts".tr)),
+                            ],
+                          ),
+                        ),
+                      ];
+                    },
+                    body: Container(
+                      child: TabBarView(
+                        controller: tabController,
+                        children: <Widget>[_userInfo(), _serachuser()],
+                      ),
                     ),
-                  ),
-                ];
-              },
-              body: Container(
-                child: TabBarView(
-                  controller: tabController,
-                  children: <Widget>[_userInfo(), _serachuser()],
-                ),
-              ),
-            )
-          : _userInfo(),
+                  )
+                : _userInfo();
+      }),
     );
   }
 
@@ -216,7 +249,7 @@ class _ProfileState extends State<SerchFeed>
               color: appColorWhite,
               child: IgnorePointer(
                 child: TextField(
-                  controller: controller,
+                  controller: searchTextController,
                   onChanged: onSearchTextChanged,
                   focusNode: focus,
                   style: TextStyle(color: Colors.grey),
@@ -268,6 +301,8 @@ class _ProfileState extends State<SerchFeed>
               .limit(limit)
               .snapshots(),
           builder: (context, snapshot) {
+            // List allImagesList = [];
+
             if (!snapshot.hasData) {
               return Center(
                   child: CircularProgressIndicator(
@@ -275,7 +310,7 @@ class _ProfileState extends State<SerchFeed>
             } else {
               allList = snapshot.data.docs;
               return _searchResult.length != 0 ||
-                      controller.text.trim().toLowerCase().isNotEmpty
+                      searchTextController.text.trim().toLowerCase().isNotEmpty
                   ? StaggeredGridView.countBuilder(
                       crossAxisCount: 4,
                       itemCount: _searchResult.length,
@@ -285,21 +320,24 @@ class _ProfileState extends State<SerchFeed>
                           StaggeredTile.count(2, index.isEven ? 3 : 2),
                       mainAxisSpacing: 4.0,
                       crossAxisSpacing: 4.0,
-                      itemBuilder: (BuildContext context, int index) =>
-                          details(_searchResult[index]))
+                      itemBuilder: (BuildContext context, int index) {
+                        return details(_searchResult[index]);
+                      })
                   : focus.hasFocus == true
                       ? Container()
-                      : StaggeredGridView.countBuilder(
-                          crossAxisCount: 4,
-                          itemCount: snapshot.data.docs.length,
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          staggeredTileBuilder: (int index) =>
-                              StaggeredTile.count(2, index.isEven ? 3 : 2),
-                          mainAxisSpacing: 4.0,
-                          crossAxisSpacing: 4.0,
-                          itemBuilder: (BuildContext context, int index) =>
-                              details(snapshot.data.docs[index]));
+                      : GetBuilder<PostController>(builder: (postController) {
+                          return StaggeredGridView.countBuilder(
+                              crossAxisCount: 4,
+                              itemCount: postController.allImagesList.length,
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              staggeredTileBuilder: (int index) =>
+                                  StaggeredTile.count(2, index.isEven ? 3 : 2),
+                              mainAxisSpacing: 4.0,
+                              crossAxisSpacing: 4.0,
+                              itemBuilder: (BuildContext context, int index) =>
+                                  details(postController.allImagesList[index]));
+                        });
             }
           },
         ));
