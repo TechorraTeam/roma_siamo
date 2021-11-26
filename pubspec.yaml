@@ -66,7 +66,7 @@ dependencies:
   translator: ^0.1.7
   sign_in_with_apple: ^3.0.0
   url_launcher:
-  
+  app_tracking_transparency: ^2.0.2+1
 
 dev_dependencies:
   flutter_launcher_icons:
