@@ -16,7 +16,8 @@ import 'package:pressfame_new/share_preference/preferencesKey.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'forgotpass.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+// import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 
@@ -490,10 +491,13 @@ class _LoginState extends State<Login> {
         passwordNode.unfocus();
       });
       FacebookLoginResult facebookLoginResult =
-          await facebookLogin.logIn(['email', 'public_profile']);
-      print(facebookLoginResult.errorMessage);
+          await facebookLogin.logIn(permissions:[
+            FacebookPermission.email,
+            FacebookPermission.publicProfile,
+          ]);
+      print(facebookLoginResult.error.developerMessage);
       switch (facebookLoginResult.status) {
-        case FacebookLoginStatus.loggedIn:
+        case FacebookLoginStatus.success:
           final token = facebookLoginResult.accessToken.token;
           await http.get(Uri.parse(
               'https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=$token'));
@@ -507,7 +511,7 @@ class _LoginState extends State<Login> {
           }
           break;
 
-        case FacebookLoginStatus.cancelledByUser:
+        case FacebookLoginStatus.cancel:
           return null;
           break;
 

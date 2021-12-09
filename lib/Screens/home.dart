@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pressfame_new/Model/report_model.dart';
 import 'package:pressfame_new/Notification/notification.dart';
 import 'package:pressfame_new/Screens/comments.dart';
+import 'package:pressfame_new/Screens/eula_screen.dart';
 import 'package:pressfame_new/Screens/login.dart';
 import 'package:pressfame_new/Screens/notificationScreen.dart';
 import 'package:pressfame_new/Screens/profile.dart';
@@ -20,6 +21,7 @@ import 'package:pressfame_new/Screens/savedPost.dart';
 import 'package:pressfame_new/Screens/search.dart';
 import 'package:pressfame_new/Screens/sharePostScreen.dart';
 import 'package:pressfame_new/Screens/tabbar.dart';
+import 'package:pressfame_new/Screens/terms_of_services.dart';
 import 'package:pressfame_new/Screens/videoView.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'dart:math' as math;
@@ -207,6 +209,42 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   fontSize: 18,
                   color: appColorBlack,
                   fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+        InkWell(
+          onTap: () => Get.to(EULAScreen()),
+          child: Row(
+            children: [
+              Icon(Icons.privacy_tip_outlined,color: appColorBlack,size: 22,),
+              Container(width: 10),
+              Text(
+                "EULA",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: appColorBlack,
+                  fontWeight: FontWeight.normal,
+                  overflow: TextOverflow.fade,
+                ),
+              ),
+            ],
+          ),
+        ),
+        InkWell(
+          onTap: () => Get.to(TermsOfServices()),
+          child: Row(
+            children: [
+              Icon(Icons.privacy_tip_outlined,color: appColorBlack,size: 22,),
+              Container(width: 10),
+              Text(
+                "terms".tr,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: appColorBlack,
+                  fontWeight: FontWeight.normal,
+                  overflow: TextOverflow.fade,
                 ),
               ),
             ],

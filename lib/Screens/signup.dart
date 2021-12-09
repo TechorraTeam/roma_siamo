@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pressfame_new/Screens/createProfile.dart';
+import 'package:pressfame_new/Screens/eula_screen.dart';
+import 'package:pressfame_new/Screens/terms_of_services.dart';
 import 'package:pressfame_new/constant/global.dart';
 import 'dart:io';
 import 'package:pressfame_new/helper/sizeConfig.dart';
@@ -18,7 +20,7 @@ class _SignUpState extends State<SignUp> {
   File imageFile;
   bool isLoading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-   bool _obscureText = false;
+  bool _obscureText = false;
 
   @override
   void initState() {
@@ -152,6 +154,55 @@ class _SignUpState extends State<SignUp> {
                                     _nameTextfield(context),
                                     _passwordTextfield(context),
                                     _emailTextfield(context),
+                                    SizedBox(
+                                      height: SizeConfig.blockSizeVertical * 5,
+                                    ),
+                                    Text(
+                                      'by_continuing'.tr,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: appColorGrey,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        InkWell(
+                                          onTap: ()=>Get.to(EULAScreen()),
+                                          child: Text(
+                                            'eula'.tr,
+                                             style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w700,
+                                                                              ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 5,),
+                                        Text(
+                                          'and'.tr,
+                                          style: TextStyle(
+                                        fontSize: 14,
+                                        color: appColorGrey,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                        ),
+                                        SizedBox(width: 5,),
+                                        InkWell(
+                                          onTap: ()=>Get.to(TermsOfServices()),
+                                          child: Text(
+                                            'terms'.tr,
+                                            style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w700,
+                                                                              ),
+                                          ),
+                                        ),
+                                      ]
+                                    ),
                                     //  _mobTextfield(context),
                                     _loginButton(context),
                                   ],
@@ -198,7 +249,7 @@ class _SignUpState extends State<SignUp> {
         child: CustomtextField(
           textInputAction: TextInputAction.next,
           controller: passwordController,
-           maxLines: 1,
+          maxLines: 1,
           hintText: 'enter_password'.tr,
           obscureText: !_obscureText,
           prefixIcon: Icon(
@@ -261,9 +312,7 @@ class _SignUpState extends State<SignUp> {
                 _register();
               } else {
                 simpleAlertBox(
-                    content: Text(
-                        "password_condition".tr),
-                    context: context);
+                    content: Text("password_condition".tr), context: context);
               }
             },
           ),
